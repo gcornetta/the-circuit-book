@@ -1,0 +1,852 @@
+\chapter{Basic Concepts}
+
+\begin{summary}
+  An electrical circuit is a network of interconnected components such as resistors, capacitors, inductors, and voltage sources. Few basic fundamental laws characterise the behaviour of these components. These laws are the baseline of analysis methods and mathematical relationships that are known as \textbf{circuit theory}.
+\end{summary}
+
+\section{Units of Measurement}
+When you analyse or design a circuit, you are typically required to compute voltages, currents or powers. However, your answer must also include a unit. The system of units used for this purpose is the \emph{International System} (SI). The SI is a unified system of measurement that includes not only the MKS (meters, kilograms, seconds) units for length, mass, and time; but also units to characterise electrical and magnetic quantities. Table~\ref{tb:si_base} reports some SI base units.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ l  c  l  c }
+  \textbf{Magnitude} & \textbf{Symbol} & \textbf{Unit} & \textbf{Abbreviation} \\
+  \hline
+  Length & $l$ & meter & m \\
+  Mass & $m$ & kilogram & Kg \\
+  Time & $t$ & second & s \\
+  Electric current & $I,\,i$ & ampere & A \\
+  Temperature & $T$ & kelvin & K \\
+  \end{tabular}
+  \caption{Some SI base units}
+  \label{tb:si_base}
+\end{table}
+
+There are also derived units, namely, units that represent a given physical magnitude but that can be derived from the SI base units. For example, capacity is measured in farads (F). A farad can be expressed as $\textrm{C}\textrm{V}^{-1}$. However, a volt is dimensionally equal to $\textrm{J}\textrm{C}^{-1}$, thus:
+\begin{equation}
+1\,F = \frac{C^2}{J}\label{eq:farads}
+\end{equation}
+The coulomb (C) can be expressed as $\textrm{A}\,\textrm{s}$, whereas a joule is $\textrm{N}\,\textrm{m}$. By definition, the newton (N) is the force necessary to give to a mass of $1\,\textrm{Kg}$, an acceleration of $1\,\textrm{m}\textrm{s}^{-2}$. Hence, substituting these definitions into equation~\ref{eq:farads} yelds:
+\begin{equation}
+1\,\textrm{F} = \frac{\textrm{C}^2}{\textrm{J}} = \frac{\textrm{A}^2\,\textrm{s}^2}{\textrm{N}\,\textrm{m}}= \frac{\textrm{A}^2\,\textrm{s}^2}{\textrm{Kg}\,\textrm{m}^2\,\textrm{s}^{-2}}=\frac{\textrm{A}^2\,\textrm{s}^4}{\textrm{Kg}\,\textrm{m}^2}
+\end{equation}
+
+Table~\ref{tb:si_derived} reports some SI derived units.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ l  c  l  c }
+  \textbf{Magnitude} & \textbf{Symbol} & \textbf{Unit} & \textbf{Abbreviation} \\
+  \hline
+  Force & $F$ & newton & N \\
+  Energy & $W$ & joule & J \\
+  Power & $P,\,p$ & watt & W \\
+  Voltage & $V,\,v,\,E,\,e$ & volt & V \\
+  Charge & $Q,\,q$ & coulomb & C \\
+  Resistance & $R$ & ohm & $\Omega$ \\
+  Capacitance & $C$ & farad & F \\
+  Inductance & $L$ & henry & H \\
+  Frequency & $f$ & hertz & Hz \\
+  Magnetic flux & $\Phi$ & weber & Wb \\
+  Magnetic flux density & $B$ & tesla & T \\
+  \end{tabular}
+  \caption{Some SI base units}
+  \label{tb:si_derived}
+\end{table}
+
+\subsection*{Exercises}
+%%%%% Exercise 1.1
+\begin{exercise}
+  Capacitance is measured in farads (F). However this is a quite large unit. Express the following values in powers of 10 and write them in their abbreviated forms:\\
+  (a) 0.000015~F
+  (b) 0.0001~F
+  (c) 0.000000005~F\\
+
+\textbf{solution:}\\
+
+(a) 0.000015~F = $15 \times 10^{-6}$~F = 15~$\mu$F\\
+(b) 0.0001~F = $0.1 \times 10^{-3}$~F = 0.1~mF\\
+(c) 0.000000005~F = $5 \times 10^{-9}$~F = 5~nF\\
+\end{exercise}
+
+%%%%% Exercise 1.2
+\begin{exercise}
+  Electric inductance is measured in henry (H). Express the following values in powers of 10 and write them in their abbreviated forms:\\
+  (a) 0.0015~H
+  (b) 0.025~H
+  (c) 0.000075~H\\
+
+\textbf{solution:}\\
+
+(a) 0.0015~H = $1.5 \times 10^{-3}$~H = 15~mH\\
+(b) 0.025~H =  $0.25 \times 10^{-3}$~H = 0.25~mF\\
+(c) 0.000075~H = $75 \times 10^{-6}$~H = 75~$\mu$H\\
+\end{exercise}
+
+%%%%% Exercise 1.3
+\begin{exercise}
+  Frequency is measured in hertz (Hz). Express the following values in powers of 10 and write them in their abbreviated forms:\\
+  (a) $5\,000$~Hz
+  (b) $8\,750\,000$~Hz
+  (c) $750\,000\,000$~Hz\\
+
+\textbf{solution:}\\
+
+(a) 5000~Hz = $5 \times 10^{3}$~Hz = 5~KHz\\
+(b) 8750000~Hz =  $8.75 \times 10^{6}$~Hz = 8.75~MHz\\
+(c) 750000000~Hz = $0.75 \times 10^{9}$~Hz = 0.75~GHz\\
+\end{exercise}
+
+%%%%% Exercise 1.4
+\begin{exercise}
+  Current is measured in amperes (A). Knowing that an ampere can be expressed as the flow of charge per second (C/s), how many electrons pass trhough a conductor carrying a 5-A current in 20~s (recall that the charge of an electron is approximately $1.6 \times 10^{-19}$~C).\\
+
+\textbf{solution:}\\
+
+The total charge flowing in the conducor is:
+\[ Charge = Current \times time = 5 \times 20 = 100~\textrm{C}\]
+The charge of a single electron is $e=1.6 \times 10^{-19}$, thus the overall charge of $100~\textrm{C}$ corresponds to:
+
+\[\frac{Charge}{e} = \frac{240}{1.6\times 10^{-19}}=62.5 \times 10^{19} = 625 \times 10^{18}~\textrm{electrons}  \] 
+\end{exercise}
+
+%%%%% Exercise 1.5
+\begin{exercise}
+ The current in an electric circuit rises exponentially according to the following law: $i(t)=5(1-e^{-3t})$~A. Calculate the charge flowing through the circuit in 200~ms.\\
+
+\textbf{solution:}\\
+\begin{equation}
+  \begin{split}
+   i(t)=\frac{dq}{dt} \longrightarrow q =\int i(t)\,dt = \\
+   & \int_0^{0.2}5(1-e^{-3t})\,dt = \\
+   & 5\left[t + \frac{e^{-3t}}{3}\right]_0^{0.2}= \\
+   & 5\left(0.2+\frac{1}{3}e^{-0.6}-0-\frac{1}{3}\right) =0.248~\textrm{C} \nonumber
+   \end{split} 
+\end{equation}
+\end{exercise}
+
+%%%%% Exercise 1.6
+\begin{exercise}
+ The unit of force is the newton (N) and work is measured in newton-meter ($\textrm{N} \cdot \textrm{m}$), which is also the unit of energy. Alternatively, energy can be also expressed in Joules (J) where $ 1\,\textrm{J} = 1\,\textrm{N}\cdot\textrm{m}$. Determine the work for moving an electric charge $Q=50~\mu\textrm{C}$ in the direction of a uniform electric field $E=20~\textrm{KVm}^{-1}$ through a conductor whose length is $L=25~\textrm{cm}$.\\
+
+\textbf{solution:}\\
+The electric force $F$ is:
+\[F = Q \times E = (50 \times 10^{-6}) \times (20 \times 10^3) = 1~\textrm{N}\]
+The work $W$ done is by the electric field is:
+\[W = F \times L = 1 \times (25 \times 10^{-2}) = 0.25~\textrm{J}\] 
+\end{exercise}
+
+%%%%% Exercise 1.7
+\begin{exercise}
+Electric potential difference between to points is measured in volts (V), and it is defined as the work necessary to move a unit positive charge from one point to another. What is the potential difference between the two points if it requires $100~\mu\textrm{J}$ to move a $10~\mu\textrm{C}$ charge between the two points?\\
+
+\textbf{solution:}\\
+\[1\,\textrm{V} = 1\,\frac{\textrm{J}}{\textrm{C}} \longrightarrow \textrm{V} = \frac{100 \times 10^{-6}}{10 \times 10^{-6}} = 10~\textrm{V} \] 
+\end{exercise}
+
+%%%%% Exercise 1.8
+\begin{exercise}
+Calculate the potential difference across a resistor dissipating 20~W while absorbing a 4-A current. Compute also the resistance value of the device.\\
+
+\textbf{solution:}\\
+Observe that voltage may be also expressed as follows:
+\[1\,\textrm{V} = 1\,\frac{\textrm{J}}{\textrm{C}} =
+\frac{\textrm{J/s}}{\textrm{C/s}} \frac{\textrm{W}}{\textrm{A}}\] 
+Thus:
+\[\textrm{V}=\frac{\textrm{W}}{\textrm{I}}= \frac{20}{4}= 5~\textrm{V}\]
+Finally:
+\[\textrm{V} = \textrm{R}\times\textrm{I} \longrightarrow \textrm{R} = \frac{\textrm{W}}{\textrm{I}^2} = \frac{20}{(4)^2} = 1.25~\Omega\]
+\end{exercise}
+
+%%%%% Exercise 1.9
+\begin{exercise}
+The voltage and current in a circuit element are respectively $v(t)=10\sqrt{2}\sin t\,\textrm{V}$ and $i(t)=2\sqrt{2} \sin t\,\textrm{A}$. Calculate the instantaneous and the average power delivered to the circuit.\\
+
+\textbf{solution:}\\
+The instantaneous power $p(t)$ is:
+\[p(t) = v(t)\times i(t) = 10\sqrt{2}\sin t \times 2\sqrt{2} \sin t\ = 40\sin^2 t\,\textrm{W}\]
+Thus:
+\[p(t) = 40 \times\frac{1}{2}(1-\cos 2t) = 20 -20\cos 2t\,\textrm{W}\]
+Average power $p_{avg}$ over a period $T$ can be computed as:
+\[p_{avg} = \frac{1}{T}\int_Tp(t)\,dt = 20\,\textrm{W}\]
+Since the cosine function averages to zero over a period $T$.
+\end{exercise}
+
+%%%%% Exercise 1.10
+\begin{exercise}
+A resistor at a voltage $v(t)=100\sin\omega t\,\textrm{V}$ draws a current $i(t)=4 \sin\omega t\,\textrm{A}$. Calculate the energy consumed by the resistor over one period of the current wave. Hence determine the average power dissipated by the resistor.\\
+
+\textbf{solution:}\\
+The period $T$ is such that when $t=T$ it results:
+\[\omega T = 2\pi \longrightarrow T = \frac{2\pi}{\omega}\]
+Thus energy $E$ results:
+\[E = \int_0^{2\pi/\omega}v(t)i(t)\,dt=\int_0^{2\pi/\omega}(100\sin\omega t)(4\sin\omega t)\,dt = \frac{400\pi}{\omega}\,\textrm{J}\]
+
+Average power $p_{avg}$ over a period $T$ can be computes as:
+\[p_{avg} = \frac{E}{T}=\frac{E}{2\pi/\omega}= \frac{400\pi}{\omega(2\pi/\omega)}=200\,\textrm{W}\]
+\end{exercise}
+
+%%%%% Exercise 1.11
+\begin{exercise}
+The voltage $v(t)$ and the current $i(t)$ in an AC circuit are respectively $v(t)=10\sin 50t\,\textrm{V}$ and $i(t)=2 \sin (50t -60^{\circ})\,\textrm{A}$. Calculate the instantaneous and the average power delivered to the circuit.\\
+
+\textbf{solution:}\\
+The instantaneous power is:
+\begin{equation}
+  \begin{split}
+     p(t) = v(t) \times i(t) = \\
+     & 10\sin 50t \times 2\sin(50t -60^{\circ}) = \\
+     & 20\sin 50t \times \sin(50t -60^{\circ}) = \\
+     & 20 \frac{1}{2}[cos(50t - 50t + 60^{\circ}) - cos(50t + 50t - 60^{\circ})] = \\
+     & 10 [cos(60^{\circ}) - cos(100t - 60^{\circ})] \nonumber
+  \end{split} 
+\end{equation}
+Average power $p_{avg}$ depends only on DC cpmponent of $p(t)$ since the AC component averages to zero over a period. Thus:
+\[p_{avg} = 10\,cos(60^{\circ}) = 5\,\textrm{W}\]
+\end{exercise}
+
+\subsection*{Problems}
+
+%%%%% Problem 1.1
+\begin{problem}
+Convert 2.5 minutes to milliseconds.
+\end{problem}
+
+%%%%% Problem 1.2
+\begin{problem}
+Convert 4 kilometers to centimeters.
+\end{problem}
+
+%%%%% Problem 1.3
+\begin{problem}
+Convert 25 centimeters to millimeters.
+\end{problem}
+
+%%%%% Problem 1.4
+\begin{problem}
+Which is the current flowing in a conductor through which $25 \times 10^{20}$ electrons pass during 5~s? (Assume the charge of an electron equal approximatively to $1.6 \times 10^{-19}$~C).
+\end{problem}
+
+%%%%% Problem 1.5
+\begin{problem}
+A charge of 400~C passes through a conductor in 15~s. What is the corresponding current in Ampere?.
+\end{problem}
+
+%%%%% Problem 1.6
+\begin{problem}
+A 100-W electric bulb draws a 780~mA current from the supply. How long will it take to pass a 30-C through the bulb? 
+\end{problem}
+
+%%%%% Problem 1.7
+\begin{problem}
+An energy of 10~J is necessary to move a 5-C charge from infinity fo a point $A$. Determine the potential at point $A$ assuming infinity at zero potential. 
+\end{problem}
+
+%%%%% Problem 1.8
+\begin{problem}
+The potential difference between two conductors is 50~V. How much work is done to move a 10-C charge from one conductor to another?
+\end{problem}
+
+%%%%% Problem 1.9
+\begin{problem}
+Determine the charge that require 1-KJ energy to be moved from infinity to a point having a 10-V potential.
+\end{problem}
+
+%%%%% Problem 1.10
+\begin{problem}
+The energy capacity or rating of a battery is generally expressed in Ampere-hour (Ah). A battery is required to supply 1.5~A continuosly for five days. What must be the rating of the battery?
+\end{problem}
+
+%%%%% Problem 1.11
+\begin{problem}
+The decay of charge in an electric circuit is given by $q = 20e^{-100t}~\mu\textrm{C}$. Determine the resulting current.
+\end{problem}
+
+%%%%% Problem 1.12
+\begin{problem}
+The voltage $v$ and the current $i$ in a circuit are given respectively by $v = 20\sin t\,\textrm{V}$ and $4\cos t\,\textrm{A}$. Determine the instantaneous and average powers and explain your result.
+\end{problem}
+
+\section{Resistance and Ohm's Law}
+Current involves the displacement of charge in a material. In a conductor, the charge carriers are the free electrons which are displaced by a difference of potential created by an external voltage source. As these electrons move through the material, they collide with atoms of the crystalline lattice and other electrons. In a process similar to friction, the moving electrons release some of their energy in the form of heat. Hence these collisions represent an opposition to charge movement that is called resistance. The greater the opposition (i.e., the greater the resistance), the smaller will be the current for a given applied voltage.
+
+Circuit components (called resistors) are specifically designed to possess resistance and are used in almost all electronic and electrical circuits. 
+Resistance is represented by the symbol $R$ and is measured in units of Ohms (after Georg Simon Ohm). The symbol for ohms is the capital Greek letter omega ($\Omega$).
+
+\subsection*{Exercises}
+%%%%% Exercise 1.11
+\begin{exercise}
+A copper cable, whose length is $l=2~\textrm{m}$, has a circular cross section of 2~mm diamenter. Calculate the resistance of the cable at $20^{\circ}\textrm{C}$ knowing that that the resistivity of copper at $20^{\circ}\textrm{C}$ is $\rho = 1.72 \times 10^{-8}\Omega\cdot\textrm{m}$. \\
+
+\textbf{solution:}\\
+Let $A = \pi\,r^2= \pi \times (1 \times 10^{-3})^2 =\pi\,10^{-6}\,\textrm{m}^2$ the cable cross section area.
+
+The resistance of the cable results:
+\[R = \frac{\rho\,l}{A} = \frac{(1.72 \times 10^{-8}) \times 2}{\pi\,10^{-6}}= 5.47\,\textrm{m}\Omega\]
+\end{exercise}
+
+\begin{remark}
+The resistance of a material is directly proportional to its resistivity $\rho$ and to its length, and inversely proportional to the area of its cross section.
+\end{remark}
+
+%%%%% Exercise 1.12
+\begin{exercise}
+A 10-m long metallic conductor with cross section area of $1~\textrm{mm}^2$ has a resistance of $2~\Omega$. Determine the conductivity of the metal. \\
+
+\textbf{solution:}\\
+\[\sigma = \frac{l}{R\,A}=\frac{10}{2 \times (10^{-3})^2} = 5\,\textrm{MS/m}\]
+
+Note that 1 siemens (S) = $1~\Omega^{-1}$.
+\end{exercise}
+
+\begin{remark}
+Observe that the \textbf{\emph{conducivity}} of a material is the inverse of its resistivity, namely $\sigma=\rho^{-1}$.
+\end{remark}
+
+%%%%% Exercise 1.13
+\begin{exercise}
+The temperature coefficient $\alpha$ expresses the variation of the resistance with temperature. More concretely, the resistance $R_T$ at a temperature of $T\, ^{circ}\textrm{C}$ is related with the resistance $R_0$ at $0\,^{\circ}\textrm{C}$ by $R_T=R_0(1+\alpha_0\,T)$, where $\alpha_0$ is the temperature coefficient at $0\,^{\circ}\textrm{C}$. Calculate the resistance of a copper wire at $T_1=-10^{\circ}\textrm{C}$ assuming that the resistance is zero at $-273^{\circ}\textrm{C}$ and that $R_0=10\,\Omega$.\\
+
+\textbf{solution:}\\
+\[\frac{R_0}{273+T_0} = \frac{R_1}{273+T_1}\]
+Hence, resistance $R_1$ at temperature $T_1$ is:
+\[R_1 = \frac{R_0(273+T_1)}{273+T_0}=\frac{10(273 - 10)}{(273 + 0)} = 9.63\,\Omega\]
+\end{exercise}
+
+
+%%%%% Exercise 1.14
+\begin{exercise}\label{ex:2.4}
+A metallic conductor has a resistance of $10\,\Omega$ at $0^{\circ}\textrm{C}$. At $30^{\circ}\textrm{C}$ the resistance becomes $11\,\Omega$. Determine the temperature coefficient of the metal at $30^{\circ}\textrm{C}$.\\
+
+\textbf{solution:}\\
+\[R_0 = R_1[1 + \alpha_1(0 -30)]\longrightarrow 10 = 11[1 + \alpha_1(-30)]\]
+
+Hence at $30^{\circ}\textrm{C}$, the temperature coefficient results:
+\[\alpha_1 = \frac{10-11}{11 \times (-30)} \approx 0.003\,^{\circ}\textrm{C}^{-1}\]
+\end{exercise}
+
+%%%%% Exercise 1.15
+\begin{exercise}
+For the metallic metallic conductor of Exercise~\ref{ex:2.4}, determine the temperature coefficient at $0^{\circ}\textrm{C}$.\\
+
+\textbf{solution:}\\
+\[R_T = R_0[1 + \alpha_0T]\longrightarrow 11 = 10[1 + \alpha_0(30)]\]
+
+Hence at $0^{\circ}\textrm{C}$, the temperature coefficient results:
+\[\alpha_0 = \frac{11-10}{10 \times (30)} = 0.003\,^{\circ}\textrm{C}^{-1}\]
+\end{exercise}
+
+%%%%% Exercise 1.16
+\begin{exercise}
+Obtain a general relationship between the temperature coefficients $\alpha_0$ and $\alpha_T$.\\
+
+\textbf{solution:}\\
+\begin{equation}
+R_T = R_0[1 + \alpha_0 T]\label{eq:2.6_1}
+\end{equation}
+and
+\begin{equation}
+R_0 = R_T[1 - \alpha_T T]\label{eq:2.6_2}
+\end{equation}
+Solving equation~\ref{eq:2.6_2} for $\alpha_T$ leads to:
+\begin{equation}
+\alpha_T = \frac{R_T -R_0}{T\,R_T}\label{eq:2.6_3}
+\end{equation}
+Substituting $R_T$ from equation~\ref{eq:2.6_1} yelds:
+\begin{equation}
+\alpha_T = \frac{R_0(1 + \alpha_0 T) -R_0}{T\,R_0(1+\alpha_0T)} = \frac{\alpha_0}{1+\alpha_0T}
+\end{equation}
+\end{exercise}
+
+\subsection*{Problems}
+%%%%% Problem 1.13
+\begin{problem}
+Calculate the length of a copper wire having a diamenter of 4~mm and a resistance of $4~\Omega$. Conductivity of copper is $5.8\times 10^7\,\textrm{S}/\textrm{m}$.
+\end{problem}
+
+\section{Series and Parallel Resistive Circuits}
+In the previous sections we examined the interrelation of current, voltage, resistance, and power in simple resistive circuits. In this section we will expand these basic concepts to examine the behavior of circuits having several resistors in series or in parallel.
+We will use Ohm’s law to derive the \textbf{voltage divider rule} and to verify Kirchhoff’s voltage law. A good understanding of these important principles provides the fundamental concepts upon which more advanced circuit analysis techniques are built. Kirchhoff’s voltage law and Kirchhoff’s current law, which will be covered in the next section, are fundamental for understanding all electrical and electronic circuits.
+
+\subsection*{Exercises}
+%%%%% Exercise 1.18
+\begin{exercise}
+A 10-V voltage source provides supply to two resistors $R_1=10\,\Omega$ and $R_2=20\,\Omega$ Connected in parallel. Find the total parallel resistance $R_p$ of the parallel connection and the current through each resistor and the total current supplied by the source\\
+
+\textbf{solution:}\\
+The total parallel resistance is:
+\[\frac{1}{R_p} = \frac{1}{R_1} + \frac{1}{R_2} = \frac{1}{10} + \frac{1}{20} = \frac{3}{20}\]
+Thus:
+\[R_p \approx 6.67\,\Omega\]
+The current through $R_1$ is:
+\[I_{R_1}=\frac{V}{R_1}=\frac{10}{10}=1\,\textrm{A}\]
+Analogously, the current through $R_2$ is:
+\[I_{R_2}=\frac{V}{R_2}=\frac{10}{20}=0.5\,\textrm{A}\]
+The total current results:
+\[I=I_{R_1} + I_{R_2} = 1 + 0.5 = 1.5\,\textrm{A}\]
+\end{exercise}
+
+%%%%% Exercise 1.19
+\begin{exercise}\label{ex:02}
+A voltage source $V$ provides supply to the series connection of resistors $R_1$ and $R_2$. Which are the voltages across the resistors?\\
+
+\textbf{solution:}\\
+The total series resistance is $R_s = R_1 + R_2$, thus the current flowing through the circuit is:
+\[I=\frac{V}{R_s}=\frac{V}{R_1 + R_2}\]
+The voltage across $R_1$ is:
+\[V_1 = R_1 \times I = \frac{R_1}{R_1 + R_2}V\]
+Similarly:
+\[V_2 = R_2 \times I = \frac{R_2}{R_1 + R_2}V\]
+\end{exercise}
+\begin{remark}
+  The result of Exercise~\ref{ex:02} is also known as
+  \textbf{\emph{voltage divider rule}} and can be generalized as follows: ``the voltage dropped across any series resistor is proportional to the magnitude of the resistor. The total voltage dropped across all resistors must equal the applied voltage''.
+\end{remark}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-01"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.20}} 
+  \label{Fig:Ex:1.20}
+\end{figure}
+
+%%%%% Exercise 1.20
+\begin{exercise}\label{ex:1.20}
+For the circuit depicted in Figure~\ref{Fig:Ex:1.20}, determine the value of $k$ so that the total resistance is minimum.\\
+
+\textbf{solution:}\\
+The total resistance of the circuit is:
+\[R = (ka \parallel ka) + \frac{a}{k} =\frac{ka}{2} + \frac{a}{k}\]
+Thus:
+\begin{equation}
+R = \frac{k^2a + 2a}{2k}\label{eq:ex1.20_1}
+\end{equation}
+Observe that $R$ is a function of $k$; hence, the resistance is minimum when $\frac{\partial R}{\partial k} = 0$, which implies that:
+\[2ka(2k) - 2(k^2a + 2a) = 0\]
+Which yelds to:
+\[2k^2 - k^2 - 2 = 0 \longrightarrow k = \sqrt{2} = 1.414\]
+\end{exercise}
+
+%%%%% Exercise 1.21
+\begin{exercise}
+What is the maximum power that can be absorbed by the resistors of the circuit of Figure~\ref{Fig:Ex:1.20} when it is connected to supply voltage $V$? Calculate the input current at maximum power condition.\\
+
+\textbf{solution:}\\
+The power $P$ dissipated on the total resistance $R$ of the circuit is $P = \frac{V^2}{R}$. Hence power is inversely proportional to resistance $R$. 
+
+In exercise~\ref{ex:1.20} we found that $R$ is minimum when $k=\sqrt{2}$. Substituting in Equation~\ref{eq:ex1.20_1} yelds: 
+\[R = \frac{2a}{\sqrt{2}}\]
+Hence:
+\[P = \frac{\sqrt{2}V^2}{2a} = \frac{V^2}{\sqrt{2}a}\,\textrm{W}\]
+Finally, recalling that $P=V\,I$, it follows that:
+\[I = \frac{P}{V} = \frac{V}{\sqrt{2}a}\,\textrm{A}\]
+\end{exercise}
+
+\begin{remark}
+Observe that the power dissipated by a resistive circuit is always proportional to the square of the applied voltage.
+\end{remark}
+
+%%%%% Exercise 1.22
+\begin{exercise}
+Formulate the \textbf{current division rule} among three resistors $R_1$, $R_2$, and $R_3$ connected in parallel and with a total input current $I$.\\
+
+\textbf{solution:}\\
+The total parallel resistance $R_p$ is sucha that:
+\[\frac{1}{R_p} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}\]
+Hence, the voltage drop $V$ across the resistors is:
+\[V = R_p \times I \]
+Consequently, the currents $I_1$, $I_2$,vand $I_3$ flowing into the individual resistors are:
+\begin{gather*} 
+I_1 = \frac{V}{R_1} = \frac{R_p}{R_1}I \\ 
+I_2 = \frac{V}{R_2} = \frac{R_p}{R_2}I \\
+I_3 = \frac{V}{R_3} = \frac{R_p}{R_3}I
+\end{gather*}
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-03"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.23}} 
+  \label{Fig:Ex:1.23}
+\end{figure}
+
+%%%%% Exercise 1.23
+\begin{exercise}
+\label{ex:1.23}
+Reduce the circuit of Figure~\ref{Fig:Ex:1.23} between terminals $a$ and $e$ To a signle resistor.\\
+
+\textbf{solution:}\\
+The resistance $R_{bc}$ between points $b$ and $c$ is:
+\[\frac{1}{R_{bc}} = \frac{1}{10} + \frac{1}{10} + \frac{1}{5} = \frac{4}{10}\,\Omega\]
+The series resistance $R'_{bd}$ between points $b$ and $d$ is:
+\[R'_{bd} = R_{bc} + R_{cd} = \frac{10}{4} + \frac{30}{4} =\frac{40}{4}\,\Omega\]
+Hence, the overall resistance $R_{bd}$ is:
+\[\frac{1}{R_{bd}} = \frac{1}{R'_{bd}} + \frac{1}{10} = \frac{4}{40} + \frac{1}{10} = \frac{2}{10}\,\Omega\]
+Finally $R_{ae}$ results:
+\[R_{ae} = R_{ab} + R_{bd} + R_{de} = 10 + \frac{10}{2} + 15 = 30\,\Omega\]
+\end{exercise}
+
+%%%%% Exercise 1.24
+\begin{exercise}
+Two resistors, $R_1$ and $R_2$, are connected in paralell and consume equal power at $20\,^{\circ}\textrm{C}$. The resistors are made of different materials and the temperature coefficients of $R_1$ and $R_2$ are respectively $\alpha_1 = 0.002\,^{\circ}\textrm{C}^{-1}$ and $\alpha_2 = 0.004\,^{\circ}\textrm{C}^{-1}$. What is the ratio of the powers dissipated at $80\,^{\circ}\textrm{C}$by resistances $R_2$ and $R_1$ respectively?\\
+
+\textbf{solution:}\\
+At $20\,^{\circ}\textrm{C}$ the two resistors dissipate the same power which implies that $R_1=R_2$; hence:
+\[R_{01}(1+20\alpha_1) = R_{02}(1+20\alpha_2) \longleftarrow \frac{R_{01}}{R_{02}} = \frac{1+20\alpha_2}{1+20\alpha_1}\] 
+Consequently, the power ratio at $80\,^{\circ}\textrm{C}$ is:
+\[\frac{V^2/R_2}{V^2/R_1} = \frac{R_1}{R_2} = \frac{R_{01}(1+60\alpha_1)}{R_{02}(1+60\alpha_2)} = \frac{(1+10\alpha_2)(1+60\alpha_1)}{(1+10\alpha_1)(1+60\alpha_2)}\]
+Substituting the numerical values yelds $0.920$.
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.4\textwidth]{"images/Fig-04"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.25}} 
+  \label{Fig:Ex:1.25}
+\end{figure}
+
+%%%%% Exercise 1.25
+\begin{exercise}
+\label{ex:1.25}
+Convert the star-connected resistors of Figure~\ref{Fig:Ex:1.25} into an equivalent triangle-connected bank.\\
+
+\textbf{solution:}\\ 
+For equivalence the resistance seen from any two terminals for both the triangle and the star configurations must be the same. Thus:
+\begin{equation*}
+\begin{split}
+R_{ac} &= R_A + R_C = R_1 \parallel (R_2 + R_3) = \frac{R_1(R_2 + R_3)}{R_1 + R_2 + R_3}\\
+R_{ab} &= R_A + R_B = R_2 \parallel (R_1 + R_3) =
+\frac{R_2(R_1 + R_3)}{R_1 + R_2 + R_3}\\
+R_{bc} &= R_B + R_C = R_3 \parallel (R_1 + R_2) =
+\frac{R_3(R_1 + R_2)}{R_1 + R_2 + R_3}
+\end{split}
+\end{equation*}
+Solving first for $R_A$, $R_B$ and $R_C$ yelds:
+\begin{equation}
+\label{eq:triangle-star}
+\begin{split}
+R_A &= \frac{R_1R_2}{R_1 + R_2 + R_3}\\
+R_B &= \frac{R_2R_3}{R_1 + R_2 + R_3}\\
+R_C &= \frac{R_1R_3}{R_1 + R_2 + R_3}
+\end{split}
+\end{equation}
+Note that Equations~\ref{eq:triangle-star} are used to transform a triangle connection into a star connection.
+Now, solving~\footnote{\textbf{Help:} obtain, for example, $R_A$ in Equation~\ref{eq:triangle-star} in two steps as $(R_A + R_C) - (R_B + R_C) = (R_A - R_B)$, and $(R_A + R_B) + (R_A - R_B)$. Then solve all Equations~\ref{eq:triangle-star} for $(R_1 + R_2 + R_3)$ and equate the results to find, for example, $R_1$ and $R_2$ as a function of $R_A$, $R_B$ and $R_3$. Substitute in the expression for $R_A$ to find $R_3$. Repeat the same procedure to compute $R_1$ and $R_2$.} equations~\ref{eq:triangle-star} for $(R_1 + R_2 + R_3)$ leads to the equations for star to triangle transformation:
+\begin{equation}
+\begin{split}
+R_1 &= \frac{1}{R_B}(R_AR_B + R_AR_C + R_BR_C)\\
+R_2 &= \frac{1}{R_C}(R_AR_B + R_AR_C + R_BR_C)\\
+R_3 &= \frac{1}{R_A}(R_AR_B + R_AR_C + R_BR_C)
+\end{split}
+\end{equation}
+\end{exercise}
+
+\begin{remark}
+The triangle-star transformation is known in the literature with several different names. Some authors refer to it as triangle-delta (or delta-triangle) transformation, wye-tee transformation, pi-tee transformation or \emph{Kennelly Theorem}.
+\end{remark}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-05"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.26}} 
+  \label{Fig:Ex:1.26}
+\end{figure}
+
+%%%%% Exercise 1.26
+\begin{exercise}
+\label{ex:1.26}
+Convert the pi-connected resistors with $R_1=10\,\Omega$, $R_2=15\,\Omega$, and $R_3=5\,\Omega$ of Figure~\ref{Fig:Ex:1.26}~(a) into the equivalent tee-connected bank of Figure~\ref{Fig:Ex:1.26}~(b).\\
+
+\textbf{solution:}\\ 
+Observe that pi- and tee-connections are the same of triangle- and star-connections. Thus:
+\begin{equation*}
+\begin{split}
+R_A &= \frac{R_1R_2}{R_1 + R_2 + R_3} = \frac{10\times 15}{10 + 15 + 5} =\frac{150}{30} =5\,\Omega\\
+R_B &= \frac{R_2R_3}{R_1 + R_2 + R_3} = \frac{15\times 5}{10 + 15 + 5} =\frac{75}{30} =2.5\,\Omega\\
+R_C &= \frac{R_1R_3}{R_1 + R_2 + R_3} = = \frac{10\times 5}{10 + 15 + 5} =\frac{50}{30} =1.67\,\Omega
+\end{split}
+\end{equation*}
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-06"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.27}} 
+  \label{Fig:Ex:1.27}
+\end{figure}
+
+%%%%% Exercise 1.27
+\begin{exercise}
+\label{ex:1.27}
+For the circuit of Figure~\ref{Fig:Ex:1.27} determine the value of $R$ So that the power dissipated in the $20-\Omega$ resitor is $20\,\textrm{W}$.\\
+
+\textbf{solution:}\\ 
+The following relation must hold:
+\[P_{20\,\Omega} = \frac{V_3^2}{20} = 20\,\textrm{W} \longrightarrow V_3 = \sqrt{(P_{20\,\Omega} \times 20)} = 20\,\textrm{V}\]
+The current flowing through the $20-\Omega$ resistor is:
+\[I_{20\,\Omega} = \frac{V_3}{20} = \frac{20}{20} = 1\,\textrm{A}\]
+Similarly the current through the $40-\Omega$ resistor is:
+\[I_{40\,\Omega} = \frac{V_3}{40} = \frac{20}{40} = 0.5\,\textrm{A}\]
+Hence the total current $I$ flowing through the circuit is:
+\[I = I_{20\,\Omega} + I_{40\,\Omega} = 1 + 0.5 = 1.6\,\textrm{A}\]
+The voltage drop $V$ on the remaining resistance is:
+\[V = V_1 + V_2 = V_{in} - V_3 = 40 - 20 = 20\,V\]
+More specifically:
+\[V= (10 + R) \times I  = 10I + RI \longrightarrow R = \frac{V - 10I}{I} = \frac{20 - 15}{1.5} \approx 3.3\,\Omega\]
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-07"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.28}} 
+  \label{Fig:Ex:1.28}
+\end{figure}
+
+%%%%% Exercise 1.28
+\begin{exercise}
+\label{ex:1.28}
+The resistance $R$ of a coil is measured experimentally using the voltmeter-ammeter method. Figure~\ref{Fig:Ex:1.28} depicts two possible arrangements. The internal resistance of the voltmenter and of the ammeter are $20\,\textrm{K}\Omega$ And $0.1\,\Omega$ respectively. What is the value of $R$ For the set-up of Figure~\ref{Fig:Ex:1.28}~(a) assuming that the voltmeter reads $4\,\textrm{V}$ and the ammeter reads $16\,\textrm{A}$?\\
+
+\textbf{solution:}\\ 
+Applying the Ohm's law:
+\[4 = (1 + R)\times 16 \longrightarrow R = \frac{4}{16} - 0.1 =0.15\,\Omega\]
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-08"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.29}} 
+  \label{Fig:Ex:1.29}
+\end{figure}
+
+%%%%% Exercise 1.29
+\begin{exercise}
+\label{ex:1.29}
+For the circuit of Figure~\ref{Fig:Ex:1.29} determine the power supplied by the 12-V source and by the $2I$-dependent voltage source.\\
+
+\textbf{solution:}\\ 
+Applying the Ohm's law:
+\[(12 - 2I) = 10I \longrightarrow I = \frac{10 + 2}{12} = 1\,\textrm{A}\]
+Thus the power delivered by the 12-V source is $12 \times 1 = 12\,\textrm{W}$. Conversely, the power edlivered by the current-controlled dependent voltage source is $(2 \times 1)\times (-1) = -2\,\textrm{W}$.
+Note that for the dependent source negative sign is used for the current because is going into the source. This means that the dependent source is absobring (rather than delivering) power. 
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-09"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.30}} 
+  \label{Fig:Ex:1.30}
+\end{figure}
+
+%%%%% Exercise 1.30
+\begin{exercise}
+\label{ex:1.30}
+The parallel combination of Figure~\ref{Fig:Ex:1.30} is fed by a 10-A current source. Calculate the power absorbed by each resistor.\\
+
+\textbf{solution:}\\
+Let $R_1=100\,\Omega$ and $R_2=100\,\Omega$. The current division rule yelds:
+\begin{equation*}
+\begin{split}
+I_1 &= \frac{R_2}{R_1 + R_2}\,I= \frac{200}{100 + 200}\,10 = 6.67\,\textrm{A}\\
+I_2 &= \frac{R_1}{R_1 + R_2}\,I= \frac{100}{100 + 200}\,10 = 3.33\,\textrm{A}
+\end{split}
+\end{equation*}
+Thus the respective power lossess can be computes as:
+\begin{equation*}
+\begin{split}
+P_1 &= R_1 \times I_1^2= 100 \times (6.67)^2 = 4.448\,\textrm{KW}\\
+P_2 &= R_2 \times I_2^2= 200 \times (3.33)^2 = 2.217\,\textrm{KW}
+\end{split}
+\end{equation*}
+\end{exercise}
+
+\subsection*{Problems}
+%%%%% Problem 1.14
+\begin{problem}
+If a voltage supply $V$ is connected at the input of the circuit of Figure~\ref{Fig:Ex:1.20}, find the condition for which the maximum power is supplied to the resistors.
+\end{problem}
+
+%%%%% Problem 1.15
+\begin{problem}
+A 100-V voltage supply is connected to four series resistors whose values are 10, 20, 25, and $50\,\Omega$ respectively.
+\end{problem}
+
+%%%%% Problem 1.16
+\begin{problem}
+Determine the voltages and the currents through three parallel resistors connected to a 10-V voltage supply and whose values are 10, 25, and $50\,\Omega$ respectively.
+\end{problem}
+
+%%%%% Problem 1.17
+\begin{problem}
+A battery has an internal resistance $R_i$ and a teminal voltage $V_t$. Show that the power supplied to a resistive load $R_L$ cannot exceed $V^2/2R_i$.
+\end{problem}
+
+%%%%% Problem 1.18
+\begin{problem}
+A battery has an internal resistance of $1\,\Omega$ and an open circuit voltage of $10\,\textrm{V}$. The battery supplies a $4-\Omega$ load. Detrmine (i) the power lost within the battery, and (ii) the terminal voltage on the load.
+\end{problem}
+
+%%%%% Problem 1.19
+\begin{problem}
+Suppose the resistors $R_1$, $R_2$ and $R_3$ form a triangle connection as depicted in Figure~\ref{Fig:Ex:1.25}. Obtain the equivalent wye-connected configuration.
+\end{problem}
+
+%%%%% Problem 1.20
+\begin{problem}
+\label{prob:1.20}
+If the ammeter reading in Figure~\ref{Fig:Ex:1.28}~(b) is $16\,\textrm{A}$ and the resistance values are the same as in Exercise~\ref{ex:1.28}. Determine the voltmeter reading.
+\end{problem}
+
+%%%%% Problem 1.21
+\begin{problem}
+Based on the results of Exercise~\ref{ex:1.28} and Problem~\ref{prob:1.20}, if the resistance is measured as the ratio of the voltmeter and ammeter readings, state which one fo the two configurations depiceted in Figure~\ref{Fig:Ex:1.28} is preferred for the measurement of a low resistance and which one is suitable for the measurement of a high resistance.
+\end{problem}
+
+%%%%% Problem 1.22
+\begin{problem}
+Determine the voltage across the resistors of the circuit of Figure~\ref{Fig:Ex:1.30}. Verify that the power supplied by the source is the same as the total power dissipated on the resistors.
+\end{problem}
+
+\section{Kirchoff's Law}
+Next to Ohm's law, Kirchoff's voltage (KVL) and current (KCL) laws are ones of the most important laws of electricity. KVL states that \emph{the algebraic summation of voltage drops around a closed loop is equal to zero}. Namely:
+\begin{equation}
+\sum_iV_i = 0
+\end{equation}
+Kirchoff's voltage law is extremely useful to understand the operarion of a series circuits. In a similar manner, Kirchoff's current law is the underlying principle to explain the operation of a parallel circuit. KCL states that \emph{the algebraic summation of the currents entering a node is equal to zero}. Namely:
+\begin{equation}
+\sum_iI_i = 0
+\end{equation}
+Alternatively, KCL may be formulated stating that \emph{the summation of the currents entering a node is equal to the summation of the currents leaving that node}.
+
+\subsection*{Exercises}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.4\textwidth]{"images/Fig-10"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.31}} 
+  \label{Fig:Ex:1.31}
+\end{figure}
+
+%%%%% Exercise 1.31
+\begin{exercise}
+\label{ex:1.31}
+Apply KVL to the circuit of Figure~\ref{Fig:Ex:1.31}.\\
+
+\textbf{solution:}\\
+The direction of current $I$ is arbitrary and it is chosen as indicated in Figure~\ref{Fig:Ex:1.31}. The voltage across each resistor is assigned a polarity. Application of Ohm's law yelds $V_i = -R_iI$ if $I$ enters the positive terminal of resistor $R_i$, and $V_i=R_iI$ If $I$ enters the negative terminal. Hence:
+\[V -V_1 - V_2 - V_3 = 0 \longrightarrow V = V_1 + V_2 + V_3 = R_1I + R_2I + R_3I = (R_1 + R_2 +R_3)\,I\]
+\end{exercise}
+
+%%%%% Exercise 1.32
+\begin{exercise}
+\label{ex:1.32}
+Write the Kirchoff's voltage equations for the two loops of the circuit of Figure~\ref{Fig:Ex:1.32}. Assume the polarities indicated in the Figure.\\
+
+\textbf{solution:}\\
+The Kirchoff's equations are:
+\begin{equation*}
+\begin{split}
+V_a - V_1 - V_2 - V_b &= 0\\
+V_b + V_2 - V_3 - V_4 - V_c &= 0
+\end{split}
+\end{equation*}
+Which yelds:
+\begin{equation*}
+\begin{split}
+(V_a - V_b) &= V_1 + V_2 = R_1I_1 + R_2(I_1 - I_2)\\
+(V_b - V_c) &= -V_2 + V_3 + V_4 = R_2(I_2 - I_1) + R_3I_2 + R_4I_2
+\end{split}
+\end{equation*}
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.4\textwidth]{"images/Fig-11"}
+  \caption{Resistive circuit of Exercise~\ref{ex:1.32}} 
+  \label{Fig:Ex:1.32}
+\end{figure}
+
+%%%%% Exercise 1.33
+\begin{exercise}
+\label{ex:1.33}
+Apply the KCL to the node of Figure~\ref{Fig:Ex:1.33} to find the magnitude and the direction of current $I$. Assume the polarities indicated in the Figure.\\
+
+\textbf{solution:}\\
+The Kirchoff current equation for the indicated directions is:
+\[-4 -2 -6 +3 -I +1 -8 = 0 \longrightarrow I = -4 -2 -6 +3 +1 -8 = -16\,\textrm{A}\]
+Thus current $I$ Enters the node.
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.4\textwidth]{"images/Fig-12"}
+  \caption{Node of Exercise~\ref{ex:1.33}} 
+  \label{Fig:Ex:1.33}
+\end{figure}
+
+%%%%% Exercise 1.34
+\begin{exercise}
+\label{ex:1.34}
+Determine $I_1$, $I_2$, and $I_3$ for the circuit of Figure~\ref{Fig:Ex:1.34} by mesh analysis.\\
+
+\textbf{solution:}\\
+Applying the KVL to the three loops indicated yelds:
+\begin{equation*}
+\begin{split}
+10 - 4I_1 - (I_1-I_2) & = 0\\
+(I_1 - I_2) - 4I_2 - 2(I_2-I_3) &= 0\\
+2(I_2 - I_3) + 8I_3 - 12 &= 0 
+\end{split}
+\end{equation*}
+Namely:
+\begin{equation*}
+\begin{split}
+5I_1 - I_2 & = 10\\
+I_1 - 7I_2 + 2I_3) &= 0\\
+I_2 + 3I_3 &= 6 
+\end{split}
+\end{equation*}
+Which yelds $I_1 = 2.16\,\textrm{A}$, $I_1 = 0.804\,\textrm{A}$, and $I_3 = 1.732\,\textrm{A}$.
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{"images/Fig-13"}
+  \caption{Circuit for Exercise~\ref{ex:1.34}} 
+  \label{Fig:Ex:1.34}
+\end{figure}
+
+%%%%% Exercise 1.35
+\begin{exercise}
+\label{ex:1.35}
+Determine current $i_x$ and $i_y$ for the circuit of Figure~\ref{Fig:Ex:1.35}.\\
+
+\textbf{solution:}\\
+Applying the KVL to the three loops yelds:
+\begin{equation*}
+\begin{split}
+20 - 10i_1 -10i_x & = 0\\
+10i_x + 10 - 5(i_1-i_x) + 5i_y&= 0\\
+5i_y + 10 - 10(i_1 - i_x + i_y) &= 0 
+\end{split}
+\end{equation*}
+Which finally leads to $i_x = 0.25\,\textrm{A}$ and
+$i_y = -1\,\textrm{A}$. Thus, current $i_y$ flows the opposite direction with respect the one indicated in Figure~\ref{Fig:Ex:1.35}.
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{"images/Fig-14"}
+  \caption{Circuit for Exercise~\ref{ex:1.35}} 
+  \label{Fig:Ex:1.35}
+\end{figure}
+
+\subsection*{Problems}
+%%%%% Problem 1.23
+\begin{problem}
+Apply KVL to obtain an expression for the equivalent resistance  formed by $n$ resistances $R_1, R_2,\ldots, R_n$ connected in series.
+\end{problem}
+
+%%%%% Problem 1.24
+\begin{problem}
+Apply KCL to obtain an expression for the equivalent resistance  formed by $n$ resistances $R_1, R_2,\ldots, R_n$ connected in parallel.
+\end{problem}

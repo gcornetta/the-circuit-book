@@ -1,0 +1,101 @@
+\chapter{AC theory}
+
+\begin{summary}
+The analysis od AC circuits is fundamental in circuit theory. When a sinusoidal input is applied to a linear circuit, the shape of the signal is preserved at the circuit output. Namely, adding, subtracting, multiplying, dividing, differentiating and integrating will still produce a sinusoidal signal.
+
+More complex non-sinusoidal signals can be represented as Fourier series so that this important property is still preserved at the cost of a considerable mathematical effort. Trigonometrical functions are not easy to use; however, working with trigonometrical functions can become more handy by expressing them in term of complex quantities and exponential notation.
+\end{summary}
+
+\section{Complex exponential}
+Sinusoidally varying waveforms can be expressed both in trigonometrical or in complex form. For example, voltage $v(t)$ can be represented as:
+\begin{equation}
+v(t) = V_0\left(\cos(\omega t) + j\sin(\omega t)\right) = V_0\,e^{j\omega t} 
+\end{equation}
+Where $V_0$ is the peak value of the voltage waveform.
+
+The corresponding current $i(t)$ is, generally, not in phase with the voltage. If $\phi$ is the phase difference among the voltage and current waveforms, then current $i(t)$ may be written as:
+\begin{equation}
+i(t) = I_0\left(\cos(\omega t -\phi) + j\sin(\omega t -\phi)\right) = I_0\,e^{(j\omega t -\phi)} 
+\end{equation}
+Where $I_0$ is the peak value of the current waveform.
+
+\section{Impedance and admittance}
+The complex notation of the current and voltage waveforms has allowed the introduction of the concept of \emph{impedance} $Z$. The impedance is a complex quantity that can be considered as a generalization of the concept of resistance $R$ for AC circuits. The impedance is defined as:
+\begin{equation}
+Z = \frac{v(t)}{i(t)} =\frac{V_0\,e^{j\omega t}}{I_0\,e^{(j\omega t -\phi)}} = \frac{V_0}{I_0}e^{j\phi} =
+\frac{V_0}{I_0}\left(\cos\phi + j\sin\phi\right) 
+\end{equation}
+Like every complex number, the impedance $Z$ can be also expressed in terms of \textbf{modulus} $|Z|$ and its \textbf{phase} (or \emph{argument}) $\angle Z$. Namely:
+\begin{equation}
+|Z| = \sqrt{\frac{V_0^2}{I_0^2}\left(\cos^2\phi + \sin^2\phi\right)} = \frac{V_0}{I_0}
+\end{equation}
+And
+\begin{equation}
+\angle Z =\tan^{-1}\left(\frac{\sin\phi}{\cos\phi}\right)=\tan^{-1}(\tan\phi) = \phi
+\end{equation}
+The impedance $Z$ can be also expressed in cartesian form as:
+\begin{equation}
+\label{eq:impedance}
+Z = R + jX
+\end{equation}
+Where the real part $R=\Re{Z}$ is called the \emph{resistance}, and the immaginary part $X=\Im{Z}$ is called the \emph{reactance}. More precisely:
+\begin{align*} 
+R &=  \frac{V_0}{I_0}\cos\phi \\ 
+X &=  \frac{V_0}{I_0}\sin\phi
+\end{align*}
+The magnitude of impedance $Z$ is:
+\begin{equation}
+|Z| = \sqrt{(R+jX)(R-jX)} = \sqrt{(R^2+X^2)}
+\end{equation}
+The phase difference among the voltage and the current waveforms is given by:
+\begin{equation}
+\angle Z = \tan^{-1}\left(\frac{X}{R}\right)
+\end{equation} 
+In some cases, for example when computing a parallel impedance, it is more convenient to work with the reciprocals of the impedances since this reduces the parallel to a simple sum. The reciprocal $Y$ of the impedance $Z$ is called the \emph{admittance}; namely:
+\begin{equation}
+\label{eq:admittance}
+Y = \frac{1}{Z} = G +jB
+\end{equation}
+Where $G$ is called the \emph{conductance} and $B$ the  \emph{susceptance}, measured in siemens $\textrm{S}$. Some old text refer to the unit of admittance as $\textrm{mho}$ ($\mho$), to pinpoint that the unit of admittance is the reciprocal of the $\textrm{ohm}$.
+
+From Equations~\ref{eq:impedance} and~\ref{eq:admittance} it results:
+\begin{equation}
+G + jB = \frac{1}{R + jX} = \frac{R - jX}{(R + jX)(R - jX)} = \frac{R - jX}{R^2 + X^2}
+\end{equation}
+Thus:
+\begin{align*} 
+G &=  \frac{R}{R^2 + X^2}\\ 
+B &=  \frac{-X}{R^2 + X^2}
+\end{align*}
+Similarly:
+\begin{align*} 
+R &=  \frac{G}{G^2 + B^2}\\ 
+X &=  \frac{-B}{G^2 + B^2}
+\end{align*}
+
+
+Measurement in AC circuits are given in terms of \emph{root-mean-square} (r.m.s.) values. Root mean square is defined as the square root of the mean square (the arithmetic mean of the squares) of the measured values. For this reason, the r.m.s. is also known as the \emph{quadratic mean}. In many cases averagong signals is more significant than considering their instantaneous values since in AC ratios and powers may vary over a wide range during a cycle. The root mean square of a periodic voltage signal $v(t)$ of period $T$ is defined as:
+\begin{align*}
+V_{rms} & = \left\langle v^2(t)\right\rangle^{\frac{1}{2}}\\ 
+        & = \sqrt{\frac{1}{T}\int_0^TV_0^2\cos^2(\omega t)\,dt} \\
+        & = \sqrt{\frac{V_0^2}{T}\int_0^T\frac{1}{2}\left[1 + \cos(2\omega t)\right]\,dt} \\
+        & = \sqrt{\frac{V_0^2}{2T}\left[t + \sin(2\omega t)\right]_0^T}\\
+        & = \sqrt{\frac{V_0^2}{2}} = \frac{V_0}{\sqrt{2}} = 0.707V_0
+\end{align*}
+Hence the root-mean-square value of the AC voltage $v(t)$ is equal to its peak value $V_0$ divided by $\sqrt{2}$. An identical realtion holds for the current.
+
+It must be pinpointed that this result holds only for pure sinusoidal signals. For arbitrary signals or sinusoidal signals with significant higher-order harmonic content, the r.m.s. Value may change significantly. For example, the \emph{crest factor}, namely the ratio between the peak and the r.m.s. value of a signal, is (as seen above) $\sqrt{2}$ for a sinusoidal signal, 1 for a symmetrical square wave and $1.73$ For a triangle wave. 
+
+\section{Power}
+The instantaneous power dissipated in AC by a circuit, varies during the period $T$, thus it is more significant considering average powers.
+
+Assuming a phase difference $\phi$ between the voltage and the current waveforms, the instantaneous power is given by:
+\begin{align}
+p(t) & = V_0 \cos(\omega t) \times I_0 \sin(\omega t - \phi)\\
+     & = \frac{1}{2}V_0I_0\left[\cos(2\omega t -\phi) + \cos\phi\right]
+\end{align} 
+The first term is periodic and will average zero over the cycle $T$, hence the average power $P$ is:
+\begin{equation}
+P = \frac{1}{T}\int_0^Tp(t)\,dt = \frac{1}{2}V_0I_0\cos\phi =\frac{V_0}{\sqrt{2}} \frac{I_0}{\sqrt{2}}\cos\phi=V_{rms}I_{rms}\cos\phi
+\end{equation}
+Where $\cos\phi$ is known as the \emph{power factor}.

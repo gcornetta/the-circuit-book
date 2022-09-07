@@ -1,0 +1,387 @@
+\chapter{Fundamentals of Mathematics}
+
+\begin{summary}
+This annex covers much of the basic mathematics useful for analysing electronic circuits. Nowadays it is not strictly necessary to have an in-depth mathematical background for circuit analysis, since electronic designers may rely on mathematical packages and electronic simulation software. However, a good knowledge of mathematical techniques may help to gain a better understanding of circuits working principles, that are somehow abstracted by the simulation software.
+Mathematical circuit analysis is challenging and it is very easy making mistakes. Thus, great care must be put in writing the equations and checking the coherence and the consistency of the units. Moreover, in some cases, approximations must be made to deal with complexity.
+\end{summary}
+
+\section{Trigonometry}
+Trigonometry knowledge is essential in circuit analysis, since in many cases we assume sinusoidal inputs. Sinusoidal functions can be defined in term of the sides of the right-angled triangle depicted in Figure~\ref{Fig:Triangle}, where $a$ is the opposite side, $b$ is the adjacent side and $c$ the hypotenuse:
+\begin{equation}
+\begin{split}
+\sin\theta &= \frac{a}{c}\\
+\cos\theta &= \frac{b}{c}\\
+\tan\theta &= \frac{a}{b}
+\end{split}
+\end{equation}
+\begin{figure}[h!]
+  \centering  \includegraphics[width=0.4\textwidth]{"images/Triangle"}
+  \caption{Right-angled triangle} 
+  \label{Fig:Triangle}
+\end{figure}
+A common way to represent a sinusoidal signal is through a rotating unit vector $OA$ around the origin $O$ At a given rate $\omega$ (given in radians per second) and take the projection of $OA$ on the $y$ axis as a function of time as depicted in Figure~\ref{Fig:Sinusoidal}. The corresponding projection over the $x$ axis will produce a cosine wave. This allows us to see graphically the values of the functions at particular angles, namely $\omega t= \frac{pi}{2}, \frac{2pi}{2}, 2\pi$, as well as the signs in the four quadrants $Q$. 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{"images/Sinusoidal"}
+  \caption{Projection of the rotating vector for $\sin$ function.} 
+  \label{Fig:Sinusoidal}
+\end{figure}
+Table~\ref{Tab:trig} summarises values and signs of the trigonometric functions in the four quadrants.
+\begin{table}[h!]
+\label{Tab:trig}
+  \centering
+  \begin{tabular}{ l  l  l  l  l  l  l  l  l  l }
+  \hline
+  Angle  & 0 & $\pi/2$  & $\pi$ & $3\pi/2$ & $2\pi$ & 1Q  & 2Q  & 3Q  & 4Q \\
+  $\sin$ & 0 & 1        & 0     & 1        & 0      & $+$ & $+$ & $-$ & $-$\\
+  $\cos$ & 1 & 0        & 1     & 0        & 1      & $+$ & $-$ & $-$ & $+$\\
+  $\tan$ & 0 & $\infty$ & 0     & $\infty$ & 0      & $+$ & $-$ & $+$ & $-$\\
+  \hline
+  \end{tabular}
+\caption{Values and signs of the trigonometric functions in the four quadrants.}
+\end{table}
+
+Finally, reported in the sequel, are some useful trigonometrical relationships and expressions.
+
+\clearpage
+\begingroup
+\allowdisplaybreaks
+\begin{flalign}
+\textrm{(a)} & \sin(-\theta) = -\sin\theta&&\\\nonumber
+\textrm{(b)} & \cos(-\theta) = \cos\theta&&\\\nonumber
+\textrm{(c)} & \tan(-\theta) = -\tan\theta&&\\\nonumber
+\textrm{(d)} & \cos(\theta + \phi) =\cos\theta\cdot\cos\phi - \sin\theta\cdot\sin\phi &&\\\nonumber
+\textrm{(e)} & \cos(\theta - \phi) =\cos\theta\cdot\cos\phi + \sin\theta\cdot\sin\phi &&\\\nonumber
+\textrm{(f)} & \sin(\theta + \phi) =\sin\theta\cdot\cos\phi + \cos\theta\cdot\sin\phi  &&\\\nonumber
+\textrm{(g)} & \sin(\theta - \phi) =\sin\theta\cdot\cos\phi - \cos\theta\cdot\sin\phi &&\\\nonumber
+\textrm{(h)} & \sin\alpha + \sin\beta = 2\sin\frac{\alpha +\beta}{2}\cos\frac{\alpha - \beta}{2}&&\\\nonumber
+\textrm{(i)} & \sin\alpha - \sin\beta = 2\cos\frac{\alpha +\beta}{2}\sin\frac{\alpha - \beta}{2}&&\\\nonumber
+\textrm{(j)} & \cos\alpha + \cos\beta = 2\cos\frac{\alpha +\beta}{2}\cos\frac{\alpha - \beta}{2}&&\\\nonumber
+\textrm{(k)} &\cos\alpha - \cos\beta = 2\sin\frac{\alpha +\beta}{2}\sin\frac{\alpha - \beta}{2} &&\\\nonumber
+\textrm{(l)} & \sin\alpha\cdot\cos\beta = \frac{1}{2}\left[\sin(\alpha +\beta) + \sin(\alpha - \beta)\right]&&\\\nonumber
+\textrm{(m)} &\cos\alpha\cdot\sin\beta = \frac{1}{2}\left[\sin(\alpha +\beta) - \sin(\alpha - \beta)\right] &&\\\nonumber
+\textrm{(n)} &\cos\alpha\cdot\cos\beta = \frac{1}{2}\left[\cos(\alpha +\beta) + \cos(\alpha - \beta)\right]&&\\\nonumber
+\textrm{(o)} &\sin\alpha\cdot\sin\beta = \frac{1}{2}\left[\cos(\alpha -\beta) - \cos(\alpha + \beta)\right] &&\\\nonumber
+\textrm{(p)} & \sin^2\theta + \cos^2\theta = 1&&\\\nonumber
+\textrm{(q)} & \cos2\theta = \cos^2\theta-\sin^2\theta = 2\cos^2\theta -1 = 1 -2\sin^2\theta&&\\\nonumber
+\textrm{(r)} & 1 +\cos\theta = 2\cos^2\frac{\theta}{2}&&\\\nonumber
+\textrm{(s)} & 1 -\cos\theta = 2\sin^2\frac{\theta}{2}&&\\\nonumber
+\textrm{(t)} & \sin2\theta =2\sin\theta\cos\theta&&\\\nonumber
+\textrm{(u)} & \lim_{\theta\rightarrow0}\frac{\sin\theta}{\theta}=\lim_{\theta\rightarrow0}\frac{\tan\theta}{\theta}=1&&\\\nonumber
+\end{flalign}
+\endgroup
+
+\section{Series expansion}
+In circuit theory and electronics, is sometimes more convenient to perform a linear approximation of a nonlinear response. In some cases it also allows us to obtain a relationship between apparently inconnected parameters.
+
+Linear approximation can be performed by truncated to the linear terms a series expansion. The more useful expansions are:
+\begin{equation}
+\begin{split}
+\sin\theta &= \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \cdots\\ 
+\cos\theta &= 1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} +\cdots
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!}+\cdots  
+\end{split}
+\end{equation} 
+Where $n! = n(n-1)(n-2)\cdots 1$ is known as the \emph{factorial} of $n$, and $\theta$ is in radians.
+Two other very common series in circuit theory and electronics are the \emph{binomial series} and the \emph{geometric series}.
+
+The binomial series is given by:
+\begin{equation}
+(1+x)^2 = 1 + nx + \frac{n(n-1)x^2}{2!} + \frac{n(n-1)(n-2)x^3}{3!} + \ldots 
+\end{equation}
+valid for both positive and negative $n$ and for $|x|<1$. This series is most frequently used for $x\ll1$ so that:
+\begin{equation}
+(1+x)^n\cong 1 + nx
+\end{equation}
+The geometric series in $x$ has a sum $S_n$ of the first $n$ terms equal to:
+\begin{equation}
+S_n a + ax^2 + ax^3 + \cdots + ax^n = \frac{a(1 - x^n)}{1- x}  
+\end{equation}
+With $a$ being a constant.
+If $|x|<1$ the sum $S$ for an infinite number of terms is:
+\begin{equation}
+S = \frac{a}{1-x}
+\end{equation}
+In some cases, when we need to find the value of some function when the variable goes to a limit (e.g., zero or infinity), we might obtain an indeterminate value (e.g., $0/0$, $\infty/\infty$, or $0\times\infty$). In such cases, if the limit exists, we may obtaining it by observing how the function approaches to the limit rather than substituting the limiting value intthe variable.
+
+Consider, for example:
+\begin{equation}
+\lim_{x\rightarrow 0}\frac{1-e^x}{x}
+\label{eq:indeterminate}
+\end{equation}
+Limit~\ref{eq:indeterminate} gives $0/0$ for $x=0$. However, if we expand the exponential and remember that $x$ must be very small. The previous limit becomes:
+\begin{equation}
+\lim_{x\rightarrow 0}\frac{1-e^x}{x}=\lim_{x\rightarrow 0}\frac{1-\left(1 + x + \frac{x^2}{2!}+\cdots\right)}{x} =\lim_{x\rightarrow 0}\left(-1-\frac{x}{2!}\right)=-1
+\end{equation}
+Expansion in terms of a series is generally very useful when we want to study the behaviour of a respons when $x\rightarrow0$, since in the limit the series is reduced to a constant term. However, there is another approach, known as \emph{de l'Hôpital's rule}, which leverages of Taylor series expansion in terms of derivatives. Namely:
+\begin{equation}
+\lim_{x\rightarrow 0}\frac{f(x)}{g(x)} = \lim_{x\rightarrow 0}\frac{f'(x)}{g'(x)}
+\end{equation}
+The Taylor's series allows expanding a function $f(x)$ around a point $x=x_0$:
+\begin{equation}
+f(x) = f(x_0) + (x-x_0)f'(x_0)+\frac{(x-x_0)^2}{2!}f''(x_0)+\cdots+\frac{(x-x_0)^n}{n!}f^n(x_0)
+\end{equation} 
+If the expansion is around the origin $x=0$, the series is referred as \emph{Maclaurin's series}.
+
+\section{Logarithms}
+Logarithms are widely used in electronics to cope with numbers spanning over very wide intervals. In a Bode plot of gain, for example, a linear scale will show only a small part of the entire range with an accurate resolution. Thus, log-log scales and decibel representation are used to improve the visualisation of circuit frequency response.
+
+The logarithm of number $y$ in a base $b$ is defined as:
+\begin{equation}
+y = b^x \longrightarrow \log_b y = x
+\end{equation}
+Logarithm has a number of interesting properties that are valid fir any base $b$:
+\begin{equation}
+\begin{split}
+\log_b(\alpha\beta) & = \log_b\alpha + \log_b\beta\\
+\log_b\left(\frac{\alpha}{\beta}\right) &= \log_b\alpha - \log_b\beta\\
+\end{split}
+\end{equation}
+Thus the logarithm function has the property to transform a multiplication into a sum and a division into a subtraction of logarithms. Moreover:
+\begin{equation}
+\begin{split}
+\log_b(\alpha^n) & = n\times\log_b\alpha\\
+\log_b\left(\alpha^\frac{1}{n}\right) &= \frac{1}{n}\log_b\alpha\\
+\end{split}
+\end{equation}
+To convert a logarithm between bases $a$ and $b$:
+\begin{equation}
+\log_ba=\frac{\log_aa}{\log_ab}
+\end{equation}
+Finally:
+\begin{equation}
+\begin{split}
+\log_b1 &= 0\\
+\log_b0 &= -\infty\\
+\end{split}
+\end{equation}
+The two common bases are $b=10$ (decimal logarithm is often denoted simply as $\log$) and $b=e$, being $e$ the \emph{Euler's number}. Natural or neperian logarithms are denote with $\ln$.
+
+There are some additional properties for natural logarithms:
+\begin{equation}
+\begin{split}
+\ln(1 + x) & = x -\frac{x^2}{2} +\frac{x^3}{3} -\frac{x^4}{4}+ \ldots\\
+\ln(n + 1) & = \ln\,n+2\left[\frac{1}{(2n+1)}+\frac{1}{3\frac{1}{(2n+1)^3}}+\frac{1}{5}\frac{1}{(2n+1)^5} +\ldots\right]~\textrm{for} n > 0
+\end{split}
+\end{equation}
+Finally:
+\begin{equation}
+\begin{split}
+\frac{d}{dx}\left(\ln x\right) &= \frac{1}{x}\\
+\int\frac{dx}{x} & = \ln\,x
+\end{split}
+\end{equation}
+The very wide range of many quantities met in electronics together with the convenience of transforming gain multiplication in cascaded amplifiers into simple additions when expressed in a logarithmic scale has fostered the use of logarithms measures.
+
+In many technical fields, the ratio of two homogeneous values $x_1$ and $x_2$ (e.g., the radiation or signal power) is expressed in \textbf{bels} ($\textrm{B}$) in honour of Alexander Graham Bell. The bel is defined as:
+\begin{equation}
+L_{bel} = \log_{10}\frac{x_1}{x_2}
+\end{equation} 
+However with the passing of time, instead of bel, its submultiple the decibel ($\textrm{dB}$) has gained wide acceptance and is commonly used.
+\[1\,\textrm{dB} = 0.1\,\textrm{B}\]
+\begin{remark}
+The ratio of two physical magnitudes can be also expressed in \textbf{\textrm{Nepers}} (\textrm{Np}), defined as:
+\[L_{Np}=\frac{1}{2}\ln{x_1}{x_2}\]
+\end{remark}
+In electronics, the decibel is defined as a power ratio or gain $G_p$ between input and output powers of a circuit, $P_{in}$ and $P_{out}$ respectively:
+\begin{equation}
+G_p = 10\,\log_{10}\left(\frac{P_{out}}{P_{in}}\right)\,\textrm{dB}
+\end{equation}
+If $P_{out}>P_{in}$, $G_p$ is expressed in positive $\textrm{dBs}$; conversely, if $P_{in}>P_{out}$ $G_p$ is expressed in negative $\textrm{dBs}$.
+
+Recalling that $P=\frac{V^2}{R}$, $G_p$ can be also written as:
+\begin{equation}
+\label{eq:voltage_gain}
+G_p = 10\,\log_{10}\frac{V^2_{out}}{V^2_{in}} = 20\,\frac{V_{out}}{V_{in}}\,\textrm{dB}
+\end{equation}
+Observe that the derivation of Equation~\ref{eq:voltage_gain} assumes equal input and output impedance levels (i.e., $R_{in}=R_{out}$); however, in the practice, when using Equation~\ref{eq:voltage_gain} the usual difference between input and output impedance levels is ignored.
+
+Many derivative ``units'' of $\textrm{dB}$  has been defined such as the $\textrm{dBm}$ which refers to a power gain where the reference level is $1\,\textrm{mW}$ instead of the input power $P_{in}$, so that $0\,\textrm{dBm}=1\,\textrm{mW}$.
+\section{Exponentials}
+The exponential function is frequently found in circuit theory and electronics. It represents phenomena where the rate of change of a variable $x$ is proportional to the value of that variable. Namely, these phenomena are described by a differenctial equation like Equation~\ref{eq:differential}.
+\begin{equation}
+\label{eq:differential}
+\frac{dx}{dt} = kx(t)
+\end{equation}
+Where $k$ Is a constant. An example could be the charging of a capacitor. Consider the simple $RC$ circuit depicted in Figure~\ref{fig:RC_circuit}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{"images/RC_circuit"}
+  \caption{Current flow in a first-order RC circuit.} 
+  \label{Fig:RC_circuit}
+\end{figure}
+Although this is not essential, for the sake of simplicity we assume that the capacitor is initially discharged and that at time $t=0$ the switch is closed.
+At this instant, the voltage drop $v_C(t)$ across the capacitor is $0\,\textrm{V}$ and the voltage drop across the resistor $R$ is hence $V_{in}$. ence, the current $i$ through the mesh is $i(t)=i_0=\frac{V_{in}}{R}$. At any time, when the current is $i(t)$ and the charge stored in the capacitor is $Q(t)$, $v_C(t)$ will be given by:
+\[v_C(t) = \frac{Q}{C} \longrightarrow dV_c(t) = \frac{dQ(t)}{C}=\frac{i(t)dt}{C}\]
+Where:
+\[i(t) = \frac{V_{in}-v_C(t)}{R}\]
+Thus
+\begin{equation}
+\label{eq:RC_charge}
+\frac{dv_C(t)}{dt}=\frac{i(t)}{C}=\frac{V_{in}-v_C(t)}{RC}
+\end{equation}
+Equation~\ref{eq:RC_charge} matches the assuntion above about the relation on the rate of change except that in this case $\frac{dv_C(t)}{dt}$ is proportional to $V_{in} - v_C(t)$. Thus, when $v_C(t)$ increases towards its final values $V_{in}$, the rate of change of $v_C(t)$ will decrease.
+
+There is a formal method to solve Equation~\ref{eq:RC_charge} for $v_C(t)$; however, in this case we will proceed by guessing the solution and showing that it agrees with Equation~\ref{eq:RC_charge}.
+Let us check that:
+\begin{equation}
+\label{eq:solution}
+v_C(t) = V_{in}\left(1-e^{-\frac{t}{RC}}\right)
+\end{equation}
+is a solution of Equation~\ref{eq:RC_charge}. To prove that, let us differentiate Equation~\ref{eq:solution}. This yelds:
+\begin{equation}
+\label{eq:proof}
+\begin{split}
+\frac{dv_C(t)}{dt} &= 0 + \frac{V_{in}}{RC}e^{-\frac{t}{RC}}\\
+ &=\frac{V_{in}}{RC}\left(\frac{V_{in}-v_C(t)}{V_{in}}\right) = \frac{V_{in}-v_C(t)}{RC} 
+\end{split}
+\end{equation}
+Where we have substituted $e^{-\frac{t}{RC}}$ from Equation~\ref{eq:solution}. For the circuit of Figure~\ref{Fig:RC_circuit} we also have that:
+\begin{equation}
+\frac{V_{in}-v_C(t)}{R}=\frac{V_{in}}{R}e^{-\frac{t}{RC}} = i_0e^{-\frac{t}{RC}}
+\end{equation}
+Where $i_0=\frac{V_{in}}{R}$.
+
+The initial slope of $v_C(t)$ is given by the value of $\frac{dv_C(t)}{dt}$ computed for $t=0$. From Equation~\ref{eq:proof} we have:
+\begin{equation}
+\left(\frac{dv_C(t)}{dt}\right)_{t=0} = \frac{V_{in}}{RC}
+\end{equation}
+The quantity $\tau = RC$ is called the \emph{time constant}. It easy to check that $RC$ is dimensionally a time, since $C = \frac{Q}{V}=\frac{A\times s}{V}$ and $R =\frac{V}{A}$, hence:
+\[RC = \frac{A\times s}{V} \times \frac{V}{A} = s\]
+The initial slope tangent will reach $V_{in}$ at time $\tau$. The voltage $V_R$ across resistor $R$ Is the voltage difference betweer $V_{in}$ and $v_C(t)$; thus:
+\begin{equation}
+V_R = V_{in} - v_C(t) = V_{in}e^{-\frac{t}{RC}}
+\end{equation}
+Responses $\frac{v_C(t)}{V_{in}}$ and $\frac{v_R(t)}{V_{in}}$ of the first-order $RC$ circuit are depicted in Figure~\ref{Fig:RC_time_constant} for $\tau=1$. The voltage drop on the capacitor $v_C(t)$ (i.e., the circuit response), asyntothically converges to the final value $V_{in}$ but theroretically never reaches it. The time to reach a given percentage $p$ of $V_{in}$ can be computed as:
+\begin{equation}
+ t= -\tau\ln p
+\end{equation} 
+\begin{figure}[h!]
+  \centering  \includegraphics[width=0.4\textwidth]{"images/RC_time_constant"}
+  \caption{Exponential responses of the first-order $RC$ circuit with $\tau=RC=1$.} 
+  \label{Fig:RC_time_constant}
+\end{figure}
+
+\begin{table}
+  \centering
+  \begin{tabular}{ l  l  l  l  l  l  l  l  l }
+  Time $\tau$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\\hline
+  $v_C(t)/V_{in}$ & 0 & 0.632 & 0.865 & 0.950 & 0.982 & 0.993 & 0.998 & 0.999 \\
+  $v_R(t)/V_{in}$ & 1 & 0.368 & 0.135 & 0.050 & 0.018 & 0.007 & 0.002 & 0.001 \\
+  \end{tabular}
+\label{Tab:RC_responses_tab_}
+\caption{Convergence of the $RC$ first order circuit response to the final value.}
+\end{table}
+
+Table~\ref{Tab:RC_responses_tab_} depicts how $v_C(t)$ and $v_R(t)$ converge to the final value as a function of the time constant $\tau$. For example, after $t=\tau$, the level of the response is $\frac{v_C(t)}{V_{in}} = e^{-1} = 0.632$. Namely the voltage drop on the capacitor $v_C(t)$ id approximately the $63\%$ of the final value $V_{in}$.
+
+Similarly, if we consider a first-order $RL$ circuit obtained by replacing the capacitor with an inductor in Figure~\ref{Fig:RC_circuit}, a similar analysis leads to:
+\begin{equation}
+i_L(t)= i_0\left(1 - e^{-t\frac{R}{L}}\right)
+\end{equation}
+ With $i_0=\frac{V_{in}}{R}$, and in this case $\tau = \frac{L}{R}$.
+
+\section{Complex numbers}
+The $\sqrt{-1}$ is one of the most important numbers in mathematics,and like other important numbers such as $e$ or $\pi$, it has its own symbol; namely, $i$. In electronics this notation coincides with the current symbol $i$, for this reason it has been replaced with $j$.
+
+Geometrically, a complex number represents a rotation on the \emph{Argand plane}. The Argand plane (or complex plane) is the plane formed by complex numbers with a cartesian coordinate system such that the x-axis is the locus of the real numbers, whereas the y-axis is the locus of immaginary numbers.
+
+Let us consider a number $n\in\mathbb{R}$. Applying twice the operator $j$ to $n$ we obtain:
+\[j\times j \times n = \sqrt{-1} \times \sqrt{-1} \times n = -n\]
+Which is equivalent to a rotation of $180^{\circ}$ on the complex plane. This means that the immaginary number $jn$ is equivalent to $90^{\circ}$ rotation.
+
+A plot of a complex number $z$ in the Argand plane is known as \emph{Argand diagram} (see Figure~\ref{fig:Argand}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.7\textwidth]{"images/Argand_diagram"}
+  \caption{Argand diagram of a complex number in cartesian and polar form.} 
+  \label{Fig:Argand}
+\end{figure}
+The number $z$ can be expressed either in cartesian or in polar form. In cartesian form , $z$ can be expressed as:
+\[z = x + jy\]
+Where $\Re(z) = x = r\,\cos\theta$ and $\Im(z) = y = r\,\sin\theta$. Thus, the complex number $z$ can be also expressed in polar form as:
+\[z = r\,\left(\cos\theta + j\sin\theta\right)=r\,e^{j\theta}\]
+Where $r = |z| = \sqrt{x^2 + y^2}$ is called the \emph{modulus} or \emph{absolute value} of $z$, and $\theta=\tan^{-1}\left(\frac{y}{x}\right)$ is called the \emph{argument} or \emph{phase} of $z$.
+
+Also the trigonometric funtions can be expanded in series. Namely:
+\begin{equation}
+\begin{split}
+\cos\theta &= 1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} -\frac{\theta^6}{6!} + \ldots\\
+\sin\theta &= \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \ldots 
+\end{split}
+\end{equation}
+Thus, the complex exponential can be expressed as:
+\begin{equation}
+\label{eq:euler}
+\begin{split}
+e^{j\theta} &= \cos\theta -j\sin\theta\\ 
+            &= \left(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} -\frac{\theta^6}{6!} + \ldots\right) +j\left(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \ldots\right)\\
+            &= 1 -j\theta + \frac{(j\theta)^2}{2!} +
+               \frac{(j\theta)^3}{3!} + \frac{(j\theta)^4}{4!} + \ldots
+\end{split}
+\end{equation}
+Recall that Equation~\ref{eq:euler} is known as \emph{Euler's formula} and it is a very handy way to represent complex numbers in circuit analysis. Conversely, it is also possible to express trigonometric functions in terms of complex exponentials as follows:
+\begin{equation}
+\begin{split}
+\cos\theta &= \frac{e^{j\theta}+e^{-j\theta}}{2}\\
+\sin\theta &= \frac{e^{j\theta}-e^{-j\theta}}{2j}
+\end{split}
+\end{equation}
+
+\section{Complex numbers algebra}
+Let us consider now algebraic operations on complex numbers; namely, how can we add, subtract, multiply and divide them.
+
+Sum operation is straightforward and is the same as adding two vectors. Let us consider two complex numbers in cartesian form, $z_1 = x_1 + jy_1$ and $z_2 = x_2 + jy_2$, then:
+\[z = z_1 + z_2 = (x_1 + x_2) + j(y_1 + y_2)\]
+Subtraction works in a similar way and can be expressed as $z = z_1 + (-z_2)$. Hence, as depicted in Figure~\ref{Fig:Complex_algebra}, the first step consists in finding $-z_2$ (this is equivalent to rotating $z_2$ by $180^{\circ}$) and then add it to $z_1$:
+\[z = z_1 + (-z_2) = (x_1 - x_2) + j(y_1 - y_2)\]
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.7\textwidth]{"images/Complex_algebra"}
+  \caption{Addition and subtraction of complex numbers.} 
+  \label{Fig:Complex_algebra}
+\end{figure}
+Some algebraic operations are much easier to handle when complex numbers are represented in exponential form rather than in cartesian or trigonometric form. Namely, using Equation~\ref{eq:euler}:
+\begin{equation}
+z = r\left(\cos\theta + j\sin\theta\right)=re^{j\theta} 
+\end{equation}
+Which allows us to write the $n$th power of a complex number as:
+\begin{equation}
+\begin{split}
+z^n &= \left(re^{j\theta}\right)^n\\   
+    &= r^n\left(\cos\theta + j\sin\theta\right)^n\\
+    &= r^n\left(\cos n\theta + j\sin n\theta\right)
+\end{split}
+\end{equation}
+Which is known as \emph{De Moivre's theorem}. Observe that $n$ can be a fraction. The exponential form allows us to perform multiplications and divisions much more easily than in cartesian form. Namely, taking $z_1 = x_1 + jy_1 = r_1e^{j\theta_1}$ and $z_2 = x_2 + jy_2 = r_2e^{j\theta_2}$, yelds:
+\[z = z_1 \times z_2 = (x_1 + jy_1)(x_2 + jy_2) = r_1r_2e^{j(\theta_1+\theta_2)}\]
+Thus the modulus of the product $z$ is equal to the product of the moduli of $z_1$ and $z2$, whereas the argument is the sum of the arguments of $z_1$ and $z2$. Namely:
+\begin{equation}
+\begin{split}
+|z| &= |z_1\times z_2| = |z_1|\times|z_2|\\
+\angle z &= \angle(z_1\times z_2) = \angle z_1 + \angle z_2
+\end{split}
+\end{equation}
+Similarly, for division we have:
+\[z=\frac{z_1}{z_2}=\frac{x_1+jy_1}{x_2+jy_2}=\frac{r_1e^{j\theta_1}}{r_2e^{j\theta_2}}=\frac{r_1}{r_2}e^{j(\theta_1-\theta_2)}\]
+Thus the modulus of the quotient $z$ is equal to the quotient of the moduli of $z_1$ and $z2$, whereas the argument is the difference of the arguments of $z_1$ and $z2$. Namely:
+\begin{equation}
+\begin{split}
+|z| &= \left|\frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|}\\
+\angle z &= \angle\left(\frac{z_1}{z_2}\right) = \angle z_1 - \angle z_2
+\end{split}
+\end{equation}
+Finally the \emph{complex conjugate} $z^*$ of the complex number $z$ can be formed by taking the negative of the immaginary part. Thus:
+\[z = x +jy = r(\cos\theta+j\sin\theta) = re^{j\theta}\longrightarrow z^* = x -jy=r(\cos\theta -j\sin\theta) = re^{-j\theta}\]
+The complex conjugate provide a straightforward way to find the modulus of a complex number as:
+\[|z|= r = \sqrt{z\times z^*}\]
+The complex conjugate also provides a convenient way of rationalizing a complex quotient as follows:
+\begin{equation}
+\begin{split}
+z &= \frac{z_1}{z_2}\\
+  &=\frac{z_1z_2^*}{z_2z_2^*}\\
+  &= \frac{(x_1+jy_1)(x_2-jy_2)}{x_2^2+y_2^2}\\
+  &= \left(\frac{x_1x_2+y_1y_2}{x_2^2+y_2^2}\right) +j\left(\frac{y_1x_2 - x_1y_2}{x_2^2+y_2^2}\right)
+\end{split}
+\end{equation}
+Complex numbers are widely used in AC circuit analysis as well as for describing the behaviour of dielectrics and magnetic materials.
