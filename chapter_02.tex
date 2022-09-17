@@ -1,0 +1,139 @@
+\chapter{Methods of Analysis}
+
+\begin{summary}
+ The networks studied so far have, in general, a single voltage or current source and can be easily analysed  using Kirchoff's volatge and current laws. In this chapter, you will learn how to analyse circuits with more than one source and that cannot be easily analysed using the techniques developed in the previous chapter.
+
+ The methods used to analyse complex networks include branch current analysis, mesh (or loop) analysis and nodal analysis.
+
+ The methods outlined above can be applied to \textbf{linear bilateral networks}. The components of a \textbf{linear} network exhibit a linear voltage-current charachteristic. The term \textbf{bilateral} indicates that each component will have a characteristic that is independent of the direction of the currnt flow and of the voltage drop across its termnals.  
+\end{summary}
+
+\section{Multiples sources and source conversion}
+Most of the circuits presented so far used \textbf{constant voltage sources} to provide power to the circuit. Recall that a voltage source supplies a constant voltage regardless of how the components are connected and of the current drawn by the circuit. Conversely, \textbf{constant current sources} supply a constant current regardless of how the components 
+are connected to the source and of the voltage drop across the current source.
+
+In the analysis of certain circuits it is easier to work with current sources rather than with voltage sources; thus, it is interesting to know how to perform source conversion and transform a voltage source into a current one and viceversa. This technique is depicted in Figure~\ref{Fig:source_conversion} and applies only to \textbf{real sources.}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{"images/Fig-source-conversion"}
+  \caption{Source conversion.} 
+  \label{Fig:source_conversion}
+\end{figure}
+So far, we have considered only ideal sources. An ideal voltage source has a zero series resistance and an ideal current source has a infinite shunt resistance. Conversely real voltage and current sources have finite series and shunt resistance respectively.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-15"}
+  \caption{Circuit of Exercise~\ref{ex:2.1}.} 
+  \label{Fig:Ex:2.1}
+\end{figure}
+\subsection*{Exercises}
+
+%%%%% Exercise 2.1
+\begin{exercise}
+\label{ex:2.1}
+Calculate the currents $I_1$, $I_2$, and the voltage $V_s$ for the circuit of Figure~\ref{Fig:Ex:2.1}.
+
+\textbf{solution:}\\
+Source $V_2$ sets the voltage drop across the resistor, hence, applying the Ohm's law yelds:
+\[I_1=\frac{5}{100}= 50\,\textrm{mA}\]
+Applying the Kirchoff's current law at node $b$ yelds:
+\[I_2 = I_1 + 1 = 1.05\,\textrm{mA}\]
+Finally, applying the Kirchoff's voltage law yelds:
+\[\sum_i V_i = -5 + V_s - 5 = 0 \longrightarrow V_s = 5 + 5 = 10\,\textrm{V}\]
+\end{exercise} 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-16"}
+  \caption{Circuit of Exercise~\ref{ex:2.2}.} 
+  \label{Fig:Ex:2.2}
+\end{figure}
+\subsection*{Exercises}
+
+%%%%% Exercise 2.2
+\begin{exercise}
+\label{ex:2.2}
+Convert the voltage source of Figure~\ref{Fig:Ex:2.2} into a current source and verify that the load current $I_L$ is the same for both sources.
+
+\textbf{solution:}\\
+The equivalent current source will have a current magnitude given by:
+\[I = \frac{50}{10} = 5\,\textrm{A}\] 
+For the voltage source of Figure~\ref{ex:2.2}, the current $I_L$ through the $40\,\Omega$ load resistance is:
+\[I_L = \frac{50}{10 + 50} =1\,\textrm{A}\]
+The load current for the equivalent current source can be computed using the \emph{current divider rule}, yelding:
+\[I_L=\frac{10}{10 + 40}\,I = \frac{10}{50}\,5= 1\,\textrm{A}\]
+\end{exercise}
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-17"}
+  \caption{Circuit of Exercise~\ref{ex:2.3}.} 
+  \label{Fig:Ex:2.3}
+\end{figure}
+\subsection*{Exercises}
+
+%%%%% Exercise 2.2
+\begin{exercise}
+\label{ex:2.3}
+Convert the current source of Figure~\ref{Fig:Ex:2.3} into a voltage source and verify that the load voltage $V_L$ is the same for both sources.
+
+\textbf{solution:}\\
+The equivalent voltage source will have a voltage magnitude given by:
+\[V = 5\,\textrm{mA} \times 5\,\textrm{K}\Omega = (5\times 10^{-3}\textrm{A})\times (5\times 10^3\Omega)= 25\,\textrm{V}\] 
+For the current source of Figure~\ref{ex:2.3}, the voltage $V_L$ through the $10\,\textrm{K}\Omega$ load resistance can be computed as follows:
+\[I_L = \frac{5\,\textrm{K}\Omega}{(5 + 20)\,\textrm{K}\Omega} \, 5\textrm{mA}=1\,\textrm{mA}\]
+Which yelds:
+\[V_L = 20\,\textrm{K}\Omega \times\ 1\,\textrm{mA}= 20\,\textrm{V}\]
+The load voltage for the equivalent voltage source can be computed using the \emph{voltage divider rule}, yelding:
+\[V_L=\frac{20\,\textrm{K}\Omega}{(5 + 20)\,\textrm{K}\Omega}\,V = \frac{20}{25}\,25= 20\,\textrm{V}\]
+\end{exercise}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{"images/Fig-18"}
+  \caption{Circuit of Exercise~\ref{ex:2.4}.} 
+  \label{Fig:Ex:2.4}
+\end{figure}
+\subsection*{Exercises}
+
+%%%%% Exercise 2.4
+\begin{exercise}
+\label{ex:2.4}
+Simplify the circuit of Figure~\ref{Fig:Ex:2.4} and determine the output voltage $V_{ab}$.
+
+\textbf{solution:}\\
+Since all the current sources $I_1$, $I_2$, and $I_3$ are in parallel they are equivalent to a new current source $I$ whose value is (applying the KCL) the algebraic sum of all the source currents:
+\[I= I_1 - I_2 - I_3 = 2 - 4 - 2 = -4\,\textrm{A}\]
+The resulting current $I$ is negative, thus the current flows downwards from node $a$ to node $b$.
+The equivalent resistance of the circuit is:
+\[R_{eq} = R_1 \parallel R_2 \parallel R_3 = 10\,\Omega \parallel 5\,\Omega \parallel 10\,\Omega = 2.5\,\Omega\]
+Finally:
+\[V_{ab} = R_eq \times I = (2.5\,\Omega)\times (-4\,\textrm{A})= -10\,\textrm{V}\]  
+\end{exercise}
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{"images/Fig-19"}
+  \caption{Circuit of Exercise~\ref{ex:2.5}.} 
+  \label{Fig:Ex:2.5}
+\end{figure}
+\subsection*{Exercises}
+
+%%%%% Exercise 2.5
+\begin{exercise}
+\label{ex:2.5}
+Simplify the circuit of Figure~\ref{Fig:Ex:2.5} into a single current source and determine load current through resistor $R_L$.
+
+\textbf{solution:}\\
+First, transform the voltage source into its Norton equivalent,i.e., the parallel connection between resistance $R_2$ and the equivalent current source $I$ computed as:
+\[I =\frac{5}{R_2} = 50\,\textrm{mA}\]
+Current sources are in parallel, hence the equivalent source $I_s$ is:
+\[I_s = I_1 + I = 100\,\textrm{mA} + 50\,\textrm{mA} = 150\,\textrm{mA}\]
+The equivalent resistance is:
+\[R_{eq} = R_1\parallel R_2 = 100\,\Omega \parallel 100\,\Omega = 50\,\Omega\]
+Finally, the load current $I_L$ can be computed by applying the \emph{current divider rule}:
+\[I_L = \frac{R_{eq}}{R_L + R_{eq}}\,I_s = \frac{50\Omega}{50\Omega + 50\Omega}\,150\textrm{mA} =75\textrm{mA}\]
+\end{exercise}

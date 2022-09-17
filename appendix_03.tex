@@ -1,94 +1,101 @@
-\chapter{Phasors}
+\chapter{AC theory}
 
 \begin{summary}
- Phasors are a very useful mathematical tool for representing phase shifts by means of phasor diagrams. The diagram represents an instantaneous plot of the magnitudes and relative pahses of voltages and currents in a circuit. By default, increasing time is represented by counterclockwise rotation (i.e., increasing angle). Conversely, decreasing time is represented by a clockwise rotation (i.e., decreasing angle).
+The analysis od AC circuits is fundamental in circuit theory. When a sinusoidal input is applied to a linear circuit, the shape of the signal is preserved at the circuit output. Namely, adding, subtracting, multiplying, dividing, differentiating and integrating will still produce a sinusoidal signal.
+
+More complex non-sinusoidal signals can be represented as Fourier series so that this important property is still preserved at the cost of a considerable mathematical effort. Trigonometrical functions are not easy to use; however, working with trigonometrical functions can become more handy by expressing them in term of complex quantities and exponential notation.
 \end{summary}
 
-\section{The basics}
-A phasor is a complex number that represents any sinusoidal function with amplitude $A$, angular frequency $\omega$, and an initial phase $\phi$. Though it may seem difficult at first, it makes the mathematics involved in tha analysis of systems with sinusoidal inputs much simpler. Let us consider a sinusoidal voltage $v(t)$ given by:
+\section{Complex exponential}
+Sinusoidally varying waveforms can be expressed both in trigonometrical or in complex form. For example, voltage $v(t)$ can be represented as:
 \begin{equation}
-v(t) = A \cos(\omega t +\phi)
+v(t) = V_0\left(\cos(\omega t) + j\sin(\omega t)\right) = V_0\,e^{j\omega t} 
 \end{equation}
-Voltage $v(t)$ can be represented in phasor form as: 
+Where $V_0$ is the peak value of the voltage waveform.
+
+The corresponding current $i(t)$ is, generally, not in phase with the voltage. If $\phi$ is the phase difference among the voltage and current waveforms, then current $i(t)$ may be written as:
 \begin{equation}
-\bm{V} = A(\cos\phi + j\sin\phi) = Ae^{j\phi}
+i(t) = I_0\left(\cos(\omega t -\phi) + j\sin(\omega t -\phi)\right) = I_0\,e^{(j\omega t -\phi)} 
 \end{equation}
-Thus, a sinusoidal signal can be represented by a vector $\bm{V}$ in the complex plane. Note that angular frequency $\omega$ is not explicitly included in the phasor notation, since it is implicit in the concept of phasor. If we multiply the phasor by $e^{j\omega t}$, we are simply rotating the phasor by an angle $\omega t$. Thus:
-\[\bm{V}e^{j\omega t} = Ae^{j\phi}e^{j\omega t} = Ae^{j(\omega t + \phi)} \]
-The time-domain function $v(t)$ can be obtained by taking the real part of this rotating vector; namely:
+Where $I_0$ is the peak value of the current waveform.
+
+\section{Impedance and admittance}
+The complex notation of the current and voltage waveforms has allowed the introduction of the concept of \emph{impedance} $Z$. The impedance is a complex quantity that can be considered as a generalization of the concept of resistance $R$ for AC circuits. The impedance is defined as:
 \begin{equation}
-\begin{split}
-v(t) &= \Re\left(\bm{V}e^{j\omega t}\right)\\
-     &= \Re\left(Ae^{j\phi}e^{j\omega t}\right)\\
-     &= A\Re\left[\cos(\omega t + \phi) +j \sin(\omega t + \phi)\right]\\
-     &= A\cos(\omega t + \phi)
-\end{split}
+Z = \frac{v(t)}{i(t)} =\frac{V_0\,e^{j\omega t}}{I_0\,e^{(j\omega t -\phi)}} = \frac{V_0}{I_0}e^{j\phi} =
+\frac{V_0}{I_0}\left(\cos\phi + j\sin\phi\right) 
+\end{equation}
+Like every complex number, the impedance $Z$ can be also expressed in terms of \textbf{modulus} $|Z|$ and its \textbf{phase} (or \emph{argument}) $\angle Z$. Namely:
+\begin{equation}
+|Z| = \sqrt{\frac{V_0^2}{I_0^2}\left(\cos^2\phi + \sin^2\phi\right)} = \frac{V_0}{I_0}
+\end{equation}
+And
+\begin{equation}
+\angle Z =\tan^{-1}\left(\frac{\sin\phi}{\cos\phi}\right)=\tan^{-1}(\tan\phi) = \phi
+\end{equation}
+The impedance $Z$ can be also expressed in cartesian form as:
+\begin{equation}
+\label{eq:impedance}
+Z = R + jX
+\end{equation}
+Where the real part $R=\Re{Z}$ is called the \emph{resistance}, and the immaginary part $X=\Im{Z}$ is called the \emph{reactance}. More precisely:
+\begin{align*} 
+R &=  \frac{V_0}{I_0}\cos\phi \\ 
+X &=  \frac{V_0}{I_0}\sin\phi
+\end{align*}
+The magnitude of impedance $Z$ is:
+\begin{equation}
+|Z| = \sqrt{(R+jX)(R-jX)} = \sqrt{(R^2+X^2)}
+\end{equation}
+The phase difference among the voltage and the current waveforms is given by:
+\begin{equation}
+\angle Z = \tan^{-1}\left(\frac{X}{R}\right)
 \end{equation} 
-One of the major advantages of using phasors is their capability to turn a differentiation or an integration problem into an algebraic problem. These properties are summarised in Table~\ref{tab:phasors}.
-
-\begin{table}[h!]
-\label{tab:phasors}
-  \centering
-  \begin{tabular}{ l  l }
-  Time domain        & Phasor domain \\\hline
-  $f(t)$             & $\bm{F}$ \\
-  $\frac{d}{dt}f(t)$ & $j\omega\bm{F}$ \\
-  $\int f(t)\,dt$        & $\frac{1}{j\omega}\bm{F}$\\
-  \end{tabular}
-  \caption{Some phasors properties.}
-\end{table}
-
-\section{The phasor diagram}
-The difficulty behind phasor diagrams is choosing which phasor to start with, since a wrong choice may lead into difficulty. As an example, consider the simple $RC$ low-pass filter of Figure~\ref{Fig:Phasors}~(a). The current $i$ is the quantity that is common to both resistor $R$ and capacitor $C$, so it is a good choice to start with, since we know the relationships between $i$ and the voltage drops $v_R$ and $v_C$ on the resistor and the capacitor respectively.
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.6\textwidth]{"images/Fig-02"}
-  \caption{(a) Simple RC circuit, and (b) Phasor diagram} 
-  \label{Fig:Phasors}
-\end{figure}
-Observe that $i = i_R = i_C = C\frac{dv_C}{dt}= j\omega Cv_C$. Thus, in the phasor domain we obtain $\bm{V_R} = R\times \bm{I} = j\omega RC\bm{V_C}$. Similarly, $v_C = v_{out} = \frac{1}{C}\int i_C\,dt$; thus, in the phasor domain we obtain $\bm{V_C} = \bm{V_{out}} = \frac{1}{j\omega C} \bm{I}$. This means that the phasor $\bm{V_C}$ (and hence also $\bm{V_{out}}$) have a phase lag of $\frac{\pi}{2}$ radians with respect the phasors of current $\bm{I}$ and of voltage across $R$ (namely, $\bm{V_R}$). 
-
-Finally from inspection of the circuit of Figure~\ref{Fig:Phasors}~(a) it results that $\bm{V_{in}} = \bm{V_R} + \bm{V_C} =\bm{V_R} + \bm{V_{out}}$; hence, the phasor of the input voltage $v_{in}(t)$ can be determined by composing the two vectors $\bm{V_R}$ and $\bm{V_C}$ using the parallelogram rule as depicted in Figure~\ref{Fig:Phasors}~(b).
-
-From the discussion above, the relationship between the input and output voltage of hte simple $RC$ filter of Figure~\ref{Fig:Phasors}~(a) can be written as:
+In some cases, for example when computing a parallel impedance, it is more convenient to work with the reciprocals of the impedances since this reduces the parallel to a simple sum. The reciprocal $Y$ of the impedance $Z$ is called the \emph{admittance}; namely:
 \begin{equation}
-\label{eq:phasor_RC}
-\begin{split}
-\bm{V_{in}} &= \bm{V_R} + \bm{V_{out}}\\
-            &= R\bm{I} + \bm{V_{out}}\\
-            &= R\left(j\omega C\bm{V_{out}}\right) + \bm{V_{out}}\\
-            &=\left(1 + j\omega RC \right)\bm{V_{out}} 
-\end{split} 
-\end{equation} 
-Equation~\ref{eq:phasor_RC} yelds to the following expression for the gain $G$ of the circuit of Figure~\ref{Fig:Phasors}~(a):
-\begin{equation}
-G = \frac{\bm{V_{out}}}{\bm{V_{in}}} = \frac{1}{1 + j\omega RC} = \frac{1}{1 + j\frac{\omega}{\omega_0}}
+\label{eq:admittance}
+Y = \frac{1}{Z} = G +jB
 \end{equation}
-Where $\omega_0 = \frac{1}{RC}$.
+Where $G$ is called the \emph{conductance} and $B$ the  \emph{susceptance}, measured in siemens $\textrm{S}$. Some old text refer to the unit of admittance as $\textrm{mho}$ ($\mho$), to pinpoint that the unit of admittance is the reciprocal of the $\textrm{ohm}$.
 
-The magnitude of the gain is:
+From Equations~\ref{eq:impedance} and~\ref{eq:admittance} it results:
 \begin{equation}
-|G| = \frac{1}{\sqrt{1 + \left(\frac{\omega}{\omega_0}\right)^2}}
+G + jB = \frac{1}{R + jX} = \frac{R - jX}{(R + jX)(R - jX)} = \frac{R - jX}{R^2 + X^2}
 \end{equation}
-and the phase shift is:
-\begin{equation}
-\angle G = \phi =  -\tan^{-1}\left(\frac{\omega/\omega_0}{1}\right) = 
--\tan^{-1}\left(\frac{\omega}{\omega_0}\right)
-\end{equation}
-At the corner frequency $\omega = \omega_0$, the gain modulus is $|G| = (1 + 1)^{-\frac{1}{2}} = \frac{1}{\sqrt{2}} = 0.707$ (or $|G| = 20\,\log(0.707)\approx -3\,\textrm{dB}$), and the phase is $\phi = -\tan^{-1}(1) = 45^{\circ}$.
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.6\textwidth]{"images/bode"}
-  \caption{Plot of the modulus of gain $G$ of the $RC$ low-pass filter} 
-  \label{Fig:Bode}
-\end{figure}
-Considering the plot of $|G|$ depicted in Figure~\ref{Fig:Bode} and taking two frecuencies a factor or 2 (i.e., an octave) or a factor of 10 (i.e., a decade) apart, it is possible to determine the slope of the plot:
-\begin{equation}
-\begin{split}
-|G_{2\omega}|-|G_{\omega}| &= -20\left[\log\left(\frac{2\omega}{\omega_0}\right)-\log\left(\frac{\omega}{\omega_0}\right)\right]\\
-                           &= -20\log\left(\frac{2\omega}{\omega_0}\cdot\frac{\omega_0}{\omega}\right)\\
-                           &\approx -6~\textrm{dB/octave}~\textrm{or}~-20~\textrm{dB/decade}
-\end{split}
-\end{equation}
+Thus:
+\begin{align*} 
+G &=  \frac{R}{R^2 + X^2}\\ 
+B &=  \frac{-X}{R^2 + X^2}
+\end{align*}
+Similarly:
+\begin{align*} 
+R &=  \frac{G}{G^2 + B^2}\\ 
+X &=  \frac{-B}{G^2 + B^2}
+\end{align*}
 
- 
+
+Measurement in AC circuits are given in terms of \emph{root-mean-square} (r.m.s.) values. Root mean square is defined as the square root of the mean square (the arithmetic mean of the squares) of the measured values. For this reason, the r.m.s. is also known as the \emph{quadratic mean}. In many cases averagong signals is more significant than considering their instantaneous values since in AC ratios and powers may vary over a wide range during a cycle. The root mean square of a periodic voltage signal $v(t)$ of period $T$ is defined as:
+\begin{align*}
+V_{rms} & = \left\langle v^2(t)\right\rangle^{\frac{1}{2}}\\ 
+        & = \sqrt{\frac{1}{T}\int_0^TV_0^2\cos^2(\omega t)\,dt} \\
+        & = \sqrt{\frac{V_0^2}{T}\int_0^T\frac{1}{2}\left[1 + \cos(2\omega t)\right]\,dt} \\
+        & = \sqrt{\frac{V_0^2}{2T}\left[t + \sin(2\omega t)\right]_0^T}\\
+        & = \sqrt{\frac{V_0^2}{2}} = \frac{V_0}{\sqrt{2}} = 0.707V_0
+\end{align*}
+Hence the root-mean-square value of the AC voltage $v(t)$ is equal to its peak value $V_0$ divided by $\sqrt{2}$. An identical realtion holds for the current.
+
+It must be pinpointed that this result holds only for pure sinusoidal signals. For arbitrary signals or sinusoidal signals with significant higher-order harmonic content, the r.m.s. Value may change significantly. For example, the \emph{crest factor}, namely the ratio between the peak and the r.m.s. value of a signal, is (as seen above) $\sqrt{2}$ for a sinusoidal signal, 1 for a symmetrical square wave and $1.73$ For a triangle wave. 
+
+\section{Power}
+The instantaneous power dissipated in AC by a circuit, varies during the period $T$, thus it is more significant considering average powers.
+
+Assuming a phase difference $\phi$ between the voltage and the current waveforms, the instantaneous power is given by:
+\begin{align}
+p(t) & = V_0 \cos(\omega t) \times I_0 \sin(\omega t - \phi)\\
+     & = \frac{1}{2}V_0I_0\left[\cos(2\omega t -\phi) + \cos\phi\right]
+\end{align} 
+The first term is periodic and will average zero over the cycle $T$, hence the average power $P$ is:
+\begin{equation}
+P = \frac{1}{T}\int_0^Tp(t)\,dt = \frac{1}{2}V_0I_0\cos\phi =\frac{V_0}{\sqrt{2}} \frac{I_0}{\sqrt{2}}\cos\phi=V_{rms}I_{rms}\cos\phi
+\end{equation}
+Where $\cos\phi$ is known as the \emph{power factor}.

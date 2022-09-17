@@ -1,0 +1,94 @@
+\chapter{Phasors}
+
+\begin{summary}
+ Phasors are a very useful mathematical tool for representing phase shifts by means of phasor diagrams. The diagram represents an instantaneous plot of the magnitudes and relative pahses of voltages and currents in a circuit. By default, increasing time is represented by counterclockwise rotation (i.e., increasing angle). Conversely, decreasing time is represented by a clockwise rotation (i.e., decreasing angle).
+\end{summary}
+
+\section{The basics}
+A phasor is a complex number that represents any sinusoidal function with amplitude $A$, angular frequency $\omega$, and an initial phase $\phi$. Though it may seem difficult at first, it makes the mathematics involved in tha analysis of systems with sinusoidal inputs much simpler. Let us consider a sinusoidal voltage $v(t)$ given by:
+\begin{equation}
+v(t) = A \cos(\omega t +\phi)
+\end{equation}
+Voltage $v(t)$ can be represented in phasor form as: 
+\begin{equation}
+\bm{V} = A(\cos\phi + j\sin\phi) = Ae^{j\phi}
+\end{equation}
+Thus, a sinusoidal signal can be represented by a vector $\bm{V}$ in the complex plane. Note that angular frequency $\omega$ is not explicitly included in the phasor notation, since it is implicit in the concept of phasor. If we multiply the phasor by $e^{j\omega t}$, we are simply rotating the phasor by an angle $\omega t$. Thus:
+\[\bm{V}e^{j\omega t} = Ae^{j\phi}e^{j\omega t} = Ae^{j(\omega t + \phi)} \]
+The time-domain function $v(t)$ can be obtained by taking the real part of this rotating vector; namely:
+\begin{equation}
+\begin{split}
+v(t) &= \Re\left(\bm{V}e^{j\omega t}\right)\\
+     &= \Re\left(Ae^{j\phi}e^{j\omega t}\right)\\
+     &= A\Re\left[\cos(\omega t + \phi) +j \sin(\omega t + \phi)\right]\\
+     &= A\cos(\omega t + \phi)
+\end{split}
+\end{equation} 
+One of the major advantages of using phasors is their capability to turn a differentiation or an integration problem into an algebraic problem. These properties are summarised in Table~\ref{tab:phasors}.
+
+\begin{table}[h!]
+\label{tab:phasors}
+  \centering
+  \begin{tabular}{ l  l }
+  Time domain        & Phasor domain \\\hline
+  $f(t)$             & $\bm{F}$ \\
+  $\frac{d}{dt}f(t)$ & $j\omega\bm{F}$ \\
+  $\int f(t)\,dt$        & $\frac{1}{j\omega}\bm{F}$\\
+  \end{tabular}
+  \caption{Some phasors properties.}
+\end{table}
+
+\section{The phasor diagram}
+The difficulty behind phasor diagrams is choosing which phasor to start with, since a wrong choice may lead into difficulty. As an example, consider the simple $RC$ low-pass filter of Figure~\ref{Fig:Phasors}~(a). The current $i$ is the quantity that is common to both resistor $R$ and capacitor $C$, so it is a good choice to start with, since we know the relationships between $i$ and the voltage drops $v_R$ and $v_C$ on the resistor and the capacitor respectively.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/Fig-02"}
+  \caption{(a) Simple RC circuit, and (b) Phasor diagram} 
+  \label{Fig:Phasors}
+\end{figure}
+Observe that $i = i_R = i_C = C\frac{dv_C}{dt}= j\omega Cv_C$. Thus, in the phasor domain we obtain $\bm{V_R} = R\times \bm{I} = j\omega RC\bm{V_C}$. Similarly, $v_C = v_{out} = \frac{1}{C}\int i_C\,dt$; thus, in the phasor domain we obtain $\bm{V_C} = \bm{V_{out}} = \frac{1}{j\omega C} \bm{I}$. This means that the phasor $\bm{V_C}$ (and hence also $\bm{V_{out}}$) have a phase lag of $\frac{\pi}{2}$ radians with respect the phasors of current $\bm{I}$ and of voltage across $R$ (namely, $\bm{V_R}$). 
+
+Finally from inspection of the circuit of Figure~\ref{Fig:Phasors}~(a) it results that $\bm{V_{in}} = \bm{V_R} + \bm{V_C} =\bm{V_R} + \bm{V_{out}}$; hence, the phasor of the input voltage $v_{in}(t)$ can be determined by composing the two vectors $\bm{V_R}$ and $\bm{V_C}$ using the parallelogram rule as depicted in Figure~\ref{Fig:Phasors}~(b).
+
+From the discussion above, the relationship between the input and output voltage of hte simple $RC$ filter of Figure~\ref{Fig:Phasors}~(a) can be written as:
+\begin{equation}
+\label{eq:phasor_RC}
+\begin{split}
+\bm{V_{in}} &= \bm{V_R} + \bm{V_{out}}\\
+            &= R\bm{I} + \bm{V_{out}}\\
+            &= R\left(j\omega C\bm{V_{out}}\right) + \bm{V_{out}}\\
+            &=\left(1 + j\omega RC \right)\bm{V_{out}} 
+\end{split} 
+\end{equation} 
+Equation~\ref{eq:phasor_RC} yelds to the following expression for the gain $G$ of the circuit of Figure~\ref{Fig:Phasors}~(a):
+\begin{equation}
+G = \frac{\bm{V_{out}}}{\bm{V_{in}}} = \frac{1}{1 + j\omega RC} = \frac{1}{1 + j\frac{\omega}{\omega_0}}
+\end{equation}
+Where $\omega_0 = \frac{1}{RC}$.
+
+The magnitude of the gain is:
+\begin{equation}
+|G| = \frac{1}{\sqrt{1 + \left(\frac{\omega}{\omega_0}\right)^2}}
+\end{equation}
+and the phase shift is:
+\begin{equation}
+\angle G = \phi =  -\tan^{-1}\left(\frac{\omega/\omega_0}{1}\right) = 
+-\tan^{-1}\left(\frac{\omega}{\omega_0}\right)
+\end{equation}
+At the corner frequency $\omega = \omega_0$, the gain modulus is $|G| = (1 + 1)^{-\frac{1}{2}} = \frac{1}{\sqrt{2}} = 0.707$ (or $|G| = 20\,\log(0.707)\approx -3\,\textrm{dB}$), and the phase is $\phi = -\tan^{-1}(1) = 45^{\circ}$.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{"images/bode"}
+  \caption{Plot of the modulus of gain $G$ of the $RC$ low-pass filter} 
+  \label{Fig:Bode}
+\end{figure}
+Considering the plot of $|G|$ depicted in Figure~\ref{Fig:Bode} and taking two frecuencies a factor or 2 (i.e., an octave) or a factor of 10 (i.e., a decade) apart, it is possible to determine the slope of the plot:
+\begin{equation}
+\begin{split}
+|G_{2\omega}|-|G_{\omega}| &= -20\left[\log\left(\frac{2\omega}{\omega_0}\right)-\log\left(\frac{\omega}{\omega_0}\right)\right]\\
+                           &= -20\log\left(\frac{2\omega}{\omega_0}\cdot\frac{\omega_0}{\omega}\right)\\
+                           &\approx -6~\textrm{dB/octave}~\textrm{or}~-20~\textrm{dB/decade}
+\end{split}
+\end{equation}
+
+ 

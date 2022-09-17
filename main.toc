@@ -4,19 +4,23 @@
 \contentsline {section}{\numberline {1.2}Resistance and Ohm's Law}{10}% 
 \contentsline {section}{\numberline {1.3}Series and Parallel Resistive Circuits}{13}% 
 \contentsline {section}{\numberline {1.4}Kirchoff's Law}{22}% 
-\contentsline {chapter}{\numberline {A}Fundamentals of Mathematics}{26}% 
-\contentsline {section}{\numberline {A.1}Trigonometry}{26}% 
-\contentsline {section}{\numberline {A.2}Series expansion}{28}% 
-\contentsline {section}{\numberline {A.3}Logarithms}{30}% 
-\contentsline {section}{\numberline {A.4}Exponentials}{31}% 
-\contentsline {section}{\numberline {A.5}Complex numbers}{34}% 
-\contentsline {section}{\numberline {A.6}Complex numbers algebra}{35}% 
-\contentsline {chapter}{\numberline {B}AC theory}{38}% 
-\contentsline {section}{\numberline {B.1}Complex exponential}{38}% 
-\contentsline {section}{\numberline {B.2}Impedance and admittance}{38}% 
-\contentsline {section}{\numberline {B.3}Power}{40}% 
-\contentsline {chapter}{\numberline {C}Phasors}{41}% 
-\contentsline {section}{\numberline {C.1}The basics}{41}% 
-\contentsline {section}{\numberline {C.2}The phasor diagram}{42}% 
-\contentsline {chapter}{\leavevmode {\color {tssteelblue}Literature}}{43}% 
+\contentsline {chapter}{\numberline {2}Methods of Analysis}{26}% 
+\contentsline {section}{\numberline {2.1}Multiples sources and source conversion}{26}% 
+\contentsline {chapter}{\numberline {A}Fundamentals of Mathematics}{32}% 
+\contentsline {section}{\numberline {A.1}Trigonometry}{32}% 
+\contentsline {section}{\numberline {A.2}Series expansion}{34}% 
+\contentsline {section}{\numberline {A.3}Logarithms}{36}% 
+\contentsline {section}{\numberline {A.4}Exponentials}{37}% 
+\contentsline {section}{\numberline {A.5}Complex numbers}{40}% 
+\contentsline {section}{\numberline {A.6}Complex numbers algebra}{41}% 
+\contentsline {chapter}{\numberline {B}Advanced Mathematics}{44}% 
+\contentsline {section}{\numberline {B.1}Basic derivatives}{44}% 
+\contentsline {chapter}{\numberline {C}AC theory}{46}% 
+\contentsline {section}{\numberline {C.1}Complex exponential}{46}% 
+\contentsline {section}{\numberline {C.2}Impedance and admittance}{46}% 
+\contentsline {section}{\numberline {C.3}Power}{48}% 
+\contentsline {chapter}{\numberline {D}Phasors}{49}% 
+\contentsline {section}{\numberline {D.1}The basics}{49}% 
+\contentsline {section}{\numberline {D.2}The phasor diagram}{50}% 
+\contentsline {chapter}{\leavevmode {\color {tssteelblue}Literature}}{51}% 
 \contentsfinish 
