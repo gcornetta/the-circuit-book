@@ -1,4 +1,4 @@
-BOOK=tstextbook
+BOOK=main
 
 all:
 	pdflatex $(BOOK)
